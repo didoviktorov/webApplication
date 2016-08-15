@@ -28,7 +28,7 @@ textarea {
   padding: 3px 2px;
 }
 
-img:hover {
+.logo img:hover {
   border: solid 2px white;
   margin: -2px;
 }
