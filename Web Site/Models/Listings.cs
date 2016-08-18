@@ -27,5 +27,8 @@ namespace Web_Site.Models
         public DateTime Date { get; set; }
 
         public ApplicationUser Author { get; set; }
+
+        public string Comments { get; set; }
+
     }
 }
