@@ -23,7 +23,22 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Body)
+            <textarea class="form-control text-box multi-line valid" disabled="disabled" rows="20">@Html.DisplayFor(model => model.Body)</textarea>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+
+        <dd>
+            @if (Model.Author != null)
+            {
+                @Model.Author.UserName
+            }
+            else
+            {
+                <i>(No Author)</i>
+            }
         </dd>
 
         <dt>
@@ -35,6 +50,27 @@
         </dd>
 
     </dl>
+    <div>
+        <p>
+            <b>@Html.DisplayNameFor(model => model.Files)</b>
+        </p>
+        <br/>
+        @if (Model.Files.Count > 0)
+        {
+            foreach (var file in Model.Files)
+            {
+            <div class="imageDiv">
+                <img src="~/File?id=@file.FileId" />
+            </div>
+            <br />
+            }
+        }
+        else
+        {
+            @Html.Label("No Uploaded Images", new { @class = "control-label col-md-2" })
+        }
+    </div>
+
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
