@@ -1,10 +1,11 @@
-﻿@model IEnumerable<Web_Site.Models.Listings>
+﻿@using Web_Site.Classes
+@model IEnumerable<Web_Site.Models.Listings>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Listings</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -35,13 +36,20 @@
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Body)
+           @Utils.CutText(item.Body)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Author)
+            @if (item.Author != null)
+            {
+                @item.Author.UserName
+            }
+            else
+            {
+                <i>(No Author)</i>
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Comments)
@@ -49,6 +57,7 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Comments", "Index", "Comments") |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>

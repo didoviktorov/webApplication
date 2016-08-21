@@ -7,7 +7,7 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Listings", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Body, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Body, new { htmlAttributes = new { @class = "form-control", @rows = "10" } })
                 @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -40,6 +40,32 @@
                 @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.Label("Upload New Images", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="files" multiple />
+            </div>
+        </div>
+
+        @if (Model.Files.Count > 0)
+        {
+            foreach (var file in Model.Files)
+            {
+                <div class="form-group">
+                    @Html.Label("Image", new { @class = "control-label col-md-2" })
+                    <div class="imageDiv">
+                        <img src="~/File?id=@file.FileId" />
+                        <br />
+                        <button name="action" value="delete @file.FileId">Delete</button>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            @Html.Label("No Uploaded Images", new { @class = "control-label col-md-2" })
+        }
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
