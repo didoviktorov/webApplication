@@ -21,5 +21,9 @@ namespace Web_Site.Models
         public System.Data.Entity.DbSet<Web_Site.Models.Listings> Listings { get; set; }
 
         public DbSet<File> Files { get; set; }
+
+        public System.Data.Entity.DbSet<Web_Site.Models.Comment> Comments { get; set; }
+
+       // public System.Data.Entity.DbSet<Web_Site.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

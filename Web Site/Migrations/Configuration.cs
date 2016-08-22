@@ -10,6 +10,7 @@ namespace Web_Site.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             ContextKey = "Web_Site.Models.ApplicationDbContext";
         }
 
