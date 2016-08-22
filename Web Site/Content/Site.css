@@ -45,3 +45,16 @@ textarea {
       /* only useful on images that will be clipped */
   top: -__px;  
 }
+
+.imagePhoto{
+  width: 100px;
+  overflow: hidden; /* essential, hides the overflow from the image */
+}
+
+.imagePhoto img{
+  width: 100%;  /* makes image 100% width of the container */
+  position: relative; /* allows movement inside the container */
+      /* OPTIONAL: use this to adjust where the 'center' starts */
+      /* only useful on images that will be clipped */
+  top: -__px;  
+}

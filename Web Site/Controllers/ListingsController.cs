@@ -58,10 +58,23 @@ namespace Web_Site.Controllers
                 ApplicationUser user = UserManager.FindById(this.User.Identity.GetUserId());
                 listings.Author = user;
 
-                listings.Files = new List<File>();
-
+                var allowedExtensions = new[] { ".jpg", ".png", ".gif" };
                 foreach (var file in files)
                 {
+                    if (file != null)
+                    {
+                        string extension = file.FileName.Substring(file.FileName.LastIndexOf(".")).ToLower();
+                        if (!allowedExtensions.Contains(extension))
+                        {
+                            TempData["notice"] = "Select .jpg, .png or .gif files format";
+                            return View(listings);
+                        }
+                        else if (file.ContentLength > 1024 * 1024)
+                        {
+                            TempData["notice"] = "Select files less than 2MB";
+                            return View(listings);
+                        }
+                    }
                     if (file != null && file.ContentLength > 0)
                     {
                         var image = new File
@@ -111,8 +124,23 @@ namespace Web_Site.Controllers
             listings = db.Listings.Include(l => l.Files).SingleOrDefault(l => l.Id == listings.Id);
             if (ModelState.IsValid)
             {
+                var allowedExtensions = new[] { ".jpg", ".png", ".gif" };
                 foreach (var file in files)
                 {
+                    if (file != null)
+                    {
+                        string extension = file.FileName.Substring(file.FileName.LastIndexOf(".")).ToLower();
+                        if (!allowedExtensions.Contains(extension))
+                        {
+                            TempData["notice"] = "Select .jpg, .png or .gif files format";
+                            return View(listings);
+                        }
+                        else if (file.ContentLength > 1024 * 1024)
+                        {
+                            TempData["notice"] = "Select files less than 2MB";
+                            return View(listings);
+                        }
+                    }
                     if (file != null && file.ContentLength > 0)
                     {
                         var image = new File
@@ -123,10 +151,6 @@ namespace Web_Site.Controllers
                         using (var reader = new System.IO.BinaryReader(file.InputStream))
                         {
                             image.Content = reader.ReadBytes(file.ContentLength);
-                        }
-                        if (listings.Files == null)
-                        {
-                            listings.Files = new List<File>();
                         }
                         listings.Files.Add(image);
                     }

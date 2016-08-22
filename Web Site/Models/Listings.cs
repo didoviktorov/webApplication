@@ -12,6 +12,7 @@ namespace Web_Site.Models
         public  Listings()
         {
             this.Date=DateTime.Now;
+            this.Files = new List<File>();
         }
 
         [Key]
