@@ -58,3 +58,39 @@ textarea {
       /* only useful on images that will be clipped */
   top: -__px;  
 }
+.listings-title{
+    color: black;
+}
+.listings-background{
+    border-radius: 8px;
+}
+.last-listings {
+    font-family: Open Sans;
+    margin: 20px;
+    border: 3px black;
+    border-style: solid;
+    color:black;
+    height : 100px;
+    width: 1100px;
+    border-radius: 10px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px;
+    font-size: 45px;
+    font-weight: bold;
+}
+.posts{
+     border: solid thick black;
+     border-radius: 1em;
+     margin:40px;
+     height: 300px;
+}
+.footers {
+    background-color:white;
+    border-radius: 4px;
+    height: 35px;
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
+
+}
