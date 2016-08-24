@@ -17,9 +17,27 @@ namespace Web_Site.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Listings
-        public ActionResult Index()
+        public ActionResult Index(string searchBy, string search)
         {
-            return View(db.Listings.Include(p => p.Author).ToList());
+            if (searchBy != null && searchBy.Equals("Title"))
+            {
+                return View("Search", 
+                    db.Listings.Include(p => p.Author)
+                    .Where(l => l.Title.ToLower().Contains(search.ToLower()) || search == null)
+                    .ToList());
+            }
+            else if (searchBy != null && searchBy.Equals("Author"))
+            {
+                return View("Search",
+                    db.Listings.Include(p => p.Author)
+                        .Where(l => l.Author.UserName.ToLower().Contains(search.ToLower()) || search == null)
+                        .ToList());
+               // return View(db.Listings.Include(p => p.Author).Where(l => l.Author.UserName.ToLower().Contains(search.ToLower()) || search == null).ToList());
+            }
+            else
+            {
+                return View(db.Listings.Include(p => p.Author).ToList());
+            }
         }
 
         // GET: Listings/Details/5

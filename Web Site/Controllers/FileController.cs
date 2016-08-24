@@ -15,6 +15,6 @@ namespace Web_Site.Controllers
         {
             var fileToRetrieve = db.Files.Find(id);
             return File(fileToRetrieve.Content, fileToRetrieve.ContentType);
-        }
+        }       
     }
 }
