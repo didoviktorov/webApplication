@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -12,8 +12,8 @@ namespace Web_Site.Models
         public  Listings()
         {
             this.Date=DateTime.Now;
+            this.Files = new List<File>();
         }
-
         [Key]
         public int Id { get; set; }
 
@@ -33,9 +33,8 @@ namespace Web_Site.Models
         [ForeignKey("Author_Id")]
         public ApplicationUser Author { get; set; }
 
-        public string Comments { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 
         public virtual ICollection<File> Files { get; set; }
-
     }
 }

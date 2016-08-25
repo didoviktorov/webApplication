@@ -11,6 +11,24 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.Label("Photo")
+        </dt>
+
+        <dd>
+            @if (Model.Files.Count > 0)
+            {
+                var file = Model.Files.FirstOrDefault(f => f.FileId > 0);
+                <div class="imagePhoto">
+                    <img src="~/File?id=@file.FileId" />
+                </div>
+            }
+            else
+            {
+                <i>No uploaded photo</i>
+            }
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Title)
         </dt>
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -18,7 +20,7 @@ namespace Web_Site.Controllers
         public ActionResult Index()
         {
             var comments = db.Comments.Include(c => c.Author);
-            return View(comments.ToList());
+            return View(comments);
         }
 
         // GET: Comments/Details/5
@@ -39,7 +41,7 @@ namespace Web_Site.Controllers
         // GET: Comments/Create
         public ActionResult Create()
         {
-            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FullName");
+            ViewBag.ListingId = new SelectList(db.Listings, "Id", "Title");
             return View();
         }
 
@@ -48,10 +50,15 @@ namespace Web_Site.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CommentId,Text,Date,AuthorId,EventId")] Comment comment)
+        public ActionResult Create([Bind(Include = "CommentId,Text,Date,AuthorId,ListingId")] Comment comment)
         {
             if (ModelState.IsValid)
             {
+                UserManager<ApplicationUser> UserManager =
+                    new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                ApplicationUser user = UserManager.FindById(this.User.Identity.GetUserId());
+                comment.Author = user;
+
                 db.Comments.Add(comment);
                 db.SaveChanges();
                 return RedirectToAction("Index");
