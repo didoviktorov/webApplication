@@ -139,7 +139,12 @@ namespace Web_Site.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Title,Body,Date")] Listings listings, IEnumerable<HttpPostedFileBase> files, string action)
         {
+            var tempListing = listings;
             listings = db.Listings.Include(l => l.Files).SingleOrDefault(l => l.Id == listings.Id);
+            listings.Title = tempListing.Title;
+            listings.Body = tempListing.Body;
+            listings.Date = tempListing.Date;
+            listings.Comments = tempListing.Comments;
             if (ModelState.IsValid)
             {
                 var allowedExtensions = new[] { ".jpg", ".png", ".gif" };
