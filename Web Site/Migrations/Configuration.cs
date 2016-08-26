@@ -43,8 +43,8 @@ namespace Web_Site.Migrations
                 }
             }
 
-            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            UserManager.AddToRole("4c08b733-28c0-4a64-af37-dd8368b47071", "Admin");
+           // var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+           // UserManager.AddToRole("4c08b733-28c0-4a64-af37-dd8368b47071", "Admin");
         }
     }
 }
