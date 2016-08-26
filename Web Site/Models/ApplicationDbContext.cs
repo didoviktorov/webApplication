@@ -18,11 +18,11 @@ namespace Web_Site.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<Web_Site.Models.Listings> Listings { get; set; }
+        public DbSet<Listings> Listings { get; set; }
 
         public DbSet<File> Files { get; set; }
 
-        public System.Data.Entity.DbSet<Web_Site.Models.Comment> Comments { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
        // public System.Data.Entity.DbSet<Web_Site.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
