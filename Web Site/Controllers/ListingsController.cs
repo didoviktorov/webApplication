@@ -137,9 +137,16 @@ namespace Web_Site.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Body,Date")] Listings listings, IEnumerable<HttpPostedFileBase> files, string action)
+        public ActionResult Edit([Bind(Include = "Id,Title,Body,Date")] Listings listings, IEnumerable<HttpPostedFileBase> files)
         {
+            string request = Request.Form["check"];
+
+            var tempListing = listings;
             listings = db.Listings.Include(l => l.Files).SingleOrDefault(l => l.Id == listings.Id);
+            listings.Title = tempListing.Title;
+            listings.Body = tempListing.Body;
+            listings.Date = tempListing.Date;
+            listings.Comments = tempListing.Comments;
             if (ModelState.IsValid)
             {
                 var allowedExtensions = new[] { ".jpg", ".png", ".gif" };
@@ -174,15 +181,13 @@ namespace Web_Site.Controllers
                     }
                 }
 
-                if (action.Length > 6)
+                if (request != null)
                 {
-                    string[] actionArgs = action.Split(' ');
-                    int fileIdToRemove = int.Parse(actionArgs[1]);
-                    db.Files.Remove(listings.Files.First(f => f.FileId == fileIdToRemove));
-                    db.Entry(listings).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return View(listings);
-
+                    int[] actionArgs = request.Split(',').Select(int.Parse).ToArray(); ;
+                    foreach (int fileIdToRemove in actionArgs)
+                    {
+                        db.Files.Remove(listings.Files.First(f => f.FileId == fileIdToRemove));
+                    }
                 }
 
                 db.Entry(listings).State = EntityState.Modified;
