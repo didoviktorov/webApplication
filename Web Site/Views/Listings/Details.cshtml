@@ -68,13 +68,13 @@
         </dd>
 
     </dl>
-    <div>
-        <p>
-            <b>@Html.DisplayNameFor(model => model.Files)</b>
-        </p>
-        <br/>
+    <div>        
         @if (Model.Files.Count > 0)
         {
+            <p>
+                <b>@Html.DisplayNameFor(model => model.Files)</b>
+            </p>
+            <br />
             foreach (var file in Model.Files)
             {
                 <div class="imageDiv">
@@ -88,6 +88,7 @@
         else
         {
             @Html.Label("No Uploaded Images", new { @class = "control-label col-md-2" })
+            <br />
         }
     </div>
 
