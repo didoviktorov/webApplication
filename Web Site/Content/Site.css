@@ -92,5 +92,12 @@ textarea {
     font-size: 18px;
     color: black;
     font-weight: bold;
+}
 
+.comments-details{
+    border-color: black;
+}
+
+.comment-box{
+    border: 1px solid black;
 }

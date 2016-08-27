@@ -67,10 +67,9 @@
                 <div class="form-group">
                     @Html.Label("Image", new { @class = "control-label col-md-2" })
                     <div class="imageDiv">
-                        <img src="~/File?id=@file.FileId" />
-                        <br />
-                        <button name="action" value="delete @file.FileId">Delete</button>
-                    </div>
+                        <img src="~/File?id=@file.FileId"/>
+                        <p><input type="checkbox" name="check" value="@file.FileId"/> <b>Check to remove image</b></p>
+                    </div>                   
                 </div>
             }
         }

@@ -18,7 +18,7 @@ namespace Web_Site.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<Web_Site.Models.Listings> Listings { get; set; }
+        public DbSet<Listings> Listings { get; set; }
 
         public DbSet<File> Files { get; set; }
 
