@@ -36,5 +36,8 @@ namespace Web_Site.Models
         public virtual ICollection<Comment> Comments { get; set; }
 
         public virtual ICollection<File> Files { get; set; }
+
+        public virtual IEnumerator<Categorie> Categories { get; set; }
+        public string CategorieName { get; set; }
     }
 }

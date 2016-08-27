@@ -41,6 +41,7 @@ namespace Web_Site.Controllers
         // GET: Listings/Create
         public ActionResult Create()
         {
+            ViewBag.CategorieName = new SelectList(db.Categories, "Id", "CategorieName");
             return View();
         }
 
@@ -49,7 +50,7 @@ namespace Web_Site.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Body")] Listings listings, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Create([Bind(Include = "Id,Title,Body, CategorieName")] Listings listings, IEnumerable<HttpPostedFileBase> files)
         {
             if (ModelState.IsValid)
             {
@@ -118,7 +119,7 @@ namespace Web_Site.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Body,Date")] Listings listings, IEnumerable<HttpPostedFileBase> files, string action)
+        public ActionResult Edit([Bind(Include = "Id,Title,Body,Date,CategorieName")] Listings listings, IEnumerable<HttpPostedFileBase> files, string action)
         {
             listings = db.Listings.Include(l => l.Files).SingleOrDefault(l => l.Id == listings.Id);
             if (ModelState.IsValid)
