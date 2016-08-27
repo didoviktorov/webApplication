@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Web_Site.Controllers;
 
 namespace Web_Site.Classes
 {
@@ -17,5 +19,7 @@ namespace Web_Site.Classes
             var shorttext = text.Substring(0, maxLenght) + "...";
             return shorttext;
         }
+
+       
     }
 }
