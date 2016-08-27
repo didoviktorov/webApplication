@@ -126,13 +126,13 @@ namespace Web_Site.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Title,Body,Date")] Listings listings, IEnumerable<HttpPostedFileBase> files, string action)
         {
-<<<<<<< HEAD
-            if (User.IsInRole("Admin") || User.Identity.GetUserId() == listings.Author_Id)
-=======
-            var tempListing = listings;
+            var listingAuthor = listings.Author_Id;
+            var currentUserId = User.Identity.GetUserId();
+           // if (User.IsInRole("Admin") || User.Identity.GetUserId() == listings.Author_Id)
+            
             listings = db.Listings.Include(l => l.Files).SingleOrDefault(l => l.Id == listings.Id);
             if (ModelState.IsValid)
->>>>>>> origin/master
+
             {
 
 
@@ -187,12 +187,12 @@ namespace Web_Site.Controllers
                         }
                     }
 
-<<<<<<< HEAD
+
                     db.Entry(listings).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-=======
+
                 //if (request != null)
                 //{
                 //    int[] actionArgs = request.Split(',').Select(int.Parse).ToArray(); ;
@@ -205,7 +205,7 @@ namespace Web_Site.Controllers
                 db.Entry(listings).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
->>>>>>> origin/master
+
             }
             return View(listings);
         }
