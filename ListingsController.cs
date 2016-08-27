@@ -25,7 +25,6 @@ namespace Web_Site.Controllers
         // GET: Listings/Details/5
         public ActionResult Details(int? id)
         {
-            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -40,7 +39,6 @@ namespace Web_Site.Controllers
         }
 
         // GET: Listings/Create
-        [Authorize]
         public ActionResult Create()
         {
             ViewBag.CategorieName = new SelectList(db.Categories, "Id", "CategorieName");
@@ -51,7 +49,6 @@ namespace Web_Site.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Title,Body, CategorieName")] Listings listings, IEnumerable<HttpPostedFileBase> files)
         {
@@ -102,7 +99,6 @@ namespace Web_Site.Controllers
         }
 
         // GET: Listings/Edit/5
-        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -122,96 +118,63 @@ namespace Web_Site.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Body,Date")] Listings listings, IEnumerable<HttpPostedFileBase> files, string action)
+        public ActionResult Edit([Bind(Include = "Id,Title,Body,Date,CategorieName")] Listings listings, IEnumerable<HttpPostedFileBase> files, string action)
         {
-<<<<<<< HEAD
-            if (User.IsInRole("Admin") || User.Identity.GetUserId() == listings.Author_Id)
-=======
-            var tempListing = listings;
             listings = db.Listings.Include(l => l.Files).SingleOrDefault(l => l.Id == listings.Id);
             if (ModelState.IsValid)
->>>>>>> origin/master
             {
-
-
-                string request = Request.Form["check"];
-
-                var tempListing = listings;
-                listings = db.Listings.Include(l => l.Files).SingleOrDefault(l => l.Id == listings.Id);
-                listings.Title = tempListing.Title;
-                listings.Body = tempListing.Body;
-                listings.Date = tempListing.Date;
-                listings.Comments = tempListing.Comments;
-                if (ModelState.IsValid)
+                var allowedExtensions = new[] { ".jpg", ".png", ".gif" };
+                foreach (var file in files)
                 {
-                    var allowedExtensions = new[] { ".jpg", ".png", ".gif" };
-                    foreach (var file in files)
+                    if (file != null)
                     {
-                        if (file != null)
+                        string extension = file.FileName.Substring(file.FileName.LastIndexOf(".")).ToLower();
+                        if (!allowedExtensions.Contains(extension))
                         {
-                            string extension = file.FileName.Substring(file.FileName.LastIndexOf(".")).ToLower();
-                            if (!allowedExtensions.Contains(extension))
-                            {
-                                TempData["notice"] = "Select .jpg, .png or .gif files format";
-                                return View(listings);
-                            }
-                            else if (file.ContentLength > 1024 * 1024)
-                            {
-                                TempData["notice"] = "Select files less than 2MB";
-                                return View(listings);
-                            }
+                            TempData["notice"] = "Select .jpg, .png or .gif files format";
+                            return View(listings);
                         }
-                        if (file != null && file.ContentLength > 0)
+                        else if (file.ContentLength > 1024 * 1024)
                         {
-                            var image = new File
-                            {
-                                FileName = System.IO.Path.GetFileName(file.FileName),
-                                ContentType = file.ContentType
-                            };
-                            using (var reader = new System.IO.BinaryReader(file.InputStream))
-                            {
-                                image.Content = reader.ReadBytes(file.ContentLength);
-                            }
-                            listings.Files.Add(image);
+                            TempData["notice"] = "Select files less than 2MB";
+                            return View(listings);
                         }
                     }
-
-                    if (request != null)
+                    if (file != null && file.ContentLength > 0)
                     {
-                        int[] actionArgs = request.Split(',').Select(int.Parse).ToArray(); ;
-                        foreach (int fileIdToRemove in actionArgs)
+                        var image = new File
                         {
-                            db.Files.Remove(listings.Files.First(f => f.FileId == fileIdToRemove));
+                            FileName = System.IO.Path.GetFileName(file.FileName),
+                            ContentType = file.ContentType
+                        };
+                        using (var reader = new System.IO.BinaryReader(file.InputStream))
+                        {
+                            image.Content = reader.ReadBytes(file.ContentLength);
                         }
+                        listings.Files.Add(image);
                     }
+                }
 
-<<<<<<< HEAD
+                if (action.Length > 6)
+                {
+                    string[] actionArgs = action.Split(' ');
+                    int fileIdToRemove = int.Parse(actionArgs[1]);
+                    db.Files.Remove(listings.Files.First(f => f.FileId == fileIdToRemove));
                     db.Entry(listings).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return View(listings);
+
                 }
-=======
-                //if (request != null)
-                //{
-                //    int[] actionArgs = request.Split(',').Select(int.Parse).ToArray(); ;
-                //    foreach (int fileIdToRemove in actionArgs)
-                //    {
-                //        db.Files.Remove(listings.Files.First(f => f.FileId == fileIdToRemove));
-                //    }
-                //}
 
                 db.Entry(listings).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
->>>>>>> origin/master
             }
             return View(listings);
         }
 
         // GET: Listings/Delete/5
-        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -228,7 +191,6 @@ namespace Web_Site.Controllers
 
         // POST: Listings/Delete/5
         [HttpPost, ActionName("Delete")]
-        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

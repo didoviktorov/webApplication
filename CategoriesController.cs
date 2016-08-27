@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -12,117 +10,108 @@ using Web_Site.Models;
 
 namespace Web_Site.Controllers
 {
-    public class CommentsController : Controller
+    public class CategoriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Comments
+        // GET: Categories
         public ActionResult Index()
         {
-            var comments = db.Comments.Include(c => c.Author);
-            return View(comments);
+            return View(db.Categories.ToList());
         }
 
-        // GET: Comments/Details/5
-        public ActionResult Details(int? id)
+        // GET: Categories/Details/5
+        public ActionResult Details(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comment comment = db.Comments.Find(id);
-            if (comment == null)
+            Categorie categorie = db.Categories.Find(id);
+            if (categorie == null)
             {
                 return HttpNotFound();
             }
-            return View(comment);
+            return View(categorie);
         }
 
-        // GET: Comments/Create
+        // GET: Categories/Create
         public ActionResult Create()
         {
-            ViewBag.ListingId = new SelectList(db.Listings, "Id", "Title");
             return View();
         }
 
-        // POST: Comments/Create
+        // POST: Categories/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CommentId,Text,Date,AuthorId,ListingId")] Comment comment)
+        public ActionResult Create([Bind(Include = "Id,CategorieName")] Categorie categorie)
         {
             if (ModelState.IsValid)
             {
-                UserManager<ApplicationUser> UserManager =
-                    new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
-                ApplicationUser user = UserManager.FindById(this.User.Identity.GetUserId());
-                comment.Author = user;
-
-                db.Comments.Add(comment);
+                categorie.Id = Guid.NewGuid();
+                db.Categories.Add(categorie);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FullName", comment.AuthorId);
-            return View(comment);
+            return View(categorie);
         }
 
-        // GET: Comments/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Categories/Edit/5
+        public ActionResult Edit(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comment comment = db.Comments.Find(id);
-            if (comment == null)
+            Categorie categorie = db.Categories.Find(id);
+            if (categorie == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FullName", comment.AuthorId);
-            return View(comment);
+            return View(categorie);
         }
 
-        // POST: Comments/Edit/5
+        // POST: Categories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CommentId,Text,Date,AuthorId,ListingId")] Comment comment)
+        public ActionResult Edit([Bind(Include = "Id,CategorieName")] Categorie categorie)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(comment).State = EntityState.Modified;
+                db.Entry(categorie).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FullName", comment.AuthorId);
-            return View(comment);
+            return View(categorie);
         }
 
-        // GET: Comments/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Categories/Delete/5
+        public ActionResult Delete(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comment comment = db.Comments.Find(id);
-            if (comment == null)
+            Categorie categorie = db.Categories.Find(id);
+            if (categorie == null)
             {
                 return HttpNotFound();
             }
-            return View(comment);
+            return View(categorie);
         }
 
-        // POST: Comments/Delete/5
+        // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(Guid id)
         {
-            Comment comment = db.Comments.Find(id);
-            db.Comments.Remove(comment);
+            Categorie categorie = db.Categories.Find(id);
+            db.Categories.Remove(categorie);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
