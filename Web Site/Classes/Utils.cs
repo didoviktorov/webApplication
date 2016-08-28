@@ -7,7 +7,7 @@ namespace Web_Site.Classes
 {
     public class Utils
     {
-        public static string CutText(string text, int maxLenght = 50)
+        public static string CutText(string text, int maxLenght = 25)
         {
             if (text == null || text.Length <= maxLenght)
             {

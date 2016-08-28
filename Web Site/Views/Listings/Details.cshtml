@@ -13,9 +13,11 @@
         <dt>
             @Html.Label("Categorie")
         </dt>
+
         <dd>
             @Model.SelectCategorie
         </dd>
+
         <dt>
             @Html.Label("Photo")
         </dt>
@@ -48,6 +50,44 @@
 
         <dd>
             <textarea class="form-control text-box multi-line valid" disabled="disabled" rows="20">@Html.DisplayFor(model => model.Body)</textarea>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author.Email)
+        </dt>
+
+        <dd>
+            @if (Model.Author == null)
+            {
+                <i>(No Email)</i>
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.Author.Email)
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactNumber)
+        </dt>
+
+        <dd>
+            @if (Model.ContactNumber == null)
+            {
+                <i>(Is not provided contact number)</i>
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.ContactNumber)
+            }
         </dd>
 
         <dt>
@@ -84,7 +124,9 @@
             foreach (var file in Model.Files)
             {
                 <div class="imageDiv">
-                    <img src="~/File?id=@file.FileId" />
+                    <a href="javascript:;" onClick="ShowPopup(@file.FileId)">
+                        <img src="~/File?id=@file.FileId" />
+                    </a>  
                 </div>
                 <br />
             }
@@ -124,6 +166,10 @@
     </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @if (User.IsInRole("Admin") || User.Identity.Name == Model.Author.UserName)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) @:|
+        @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) @:|
+    }
     @Html.ActionLink("Back to List", "Index")
 </p>

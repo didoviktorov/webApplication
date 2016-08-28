@@ -202,6 +202,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListingsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MyAdsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -323,6 +324,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\openPhoto.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -373,12 +375,13 @@
     <Content Include="Views\Comments\Details.cshtml" />
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
-    <None Include="Views\Listings\Search.cshtml" />
     <Content Include="Views\Shared\GuestLayout.cshtml" />
     <Content Include="Views\Shared\UserLayout.cshtml" />
     <Content Include="Web_Site.csproj~Comments" />
     <Content Include="Views\Shared\AdminLayout.cshtml" />
     <Content Include="Views\Listings\SelectedCategorie.cshtml" />
+    <Content Include="Views\Listings\Search.cshtml" />
+    <Content Include="Views\MyAds\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Comment\" />
