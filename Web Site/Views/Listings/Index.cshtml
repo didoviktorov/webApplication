@@ -64,13 +64,10 @@
                     <i>(No Author)</i>
                 }
             </td>
-            <td>
+            <td class="comment_col">
                 @if (item.Comments.Count > 0)
                 {
-                    foreach (var c in item.Comments)
-                    {
-                        @c.Text@:;<br>
-                    }
+                    <div>@item.Comments.Count</div>
                 }
                 else
                 {
