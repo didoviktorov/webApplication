@@ -9,74 +9,74 @@
     @{string categoryPath = HttpContext.Current.Request.Url.AbsoluteUri; }
     @{ int indexOfSelectedCategory = categoryPath.IndexOf("SelectedCategorie");}
     @{string categoryMode = categoryPath.Substring(indexOfSelectedCategory + 18, categoryPath.Length - indexOfSelectedCategory - 18); }
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Body)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SelectCategorie)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Author)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Comments)
-        </th>
-        <th>Actions</th>
-    </tr>
-    @foreach (var item in Model)
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Body)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SelectCategorie)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Author)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Comments)
+                </th>
+                <th>Actions</th>
+            </tr>
+            @foreach (var item in Model)
             {
                 if (item.SelectCategorie.ToString() == categoryMode)
-                {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Utils.CutText(item.Body)
-                </td>
-                <td>
-                    @item.SelectCategorie
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
-                    @if (item.Author != null)
-                    {
-                        @item.Author.UserName
-                    }
-                    else
-                    {
-                        <i>(No Author)</i>
-                    }
-                </td>
-                <td>
-                    @if (item.Comments.Count > 0)
-                    {
-                        foreach (var c in item.Comments)
+                { 
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Utils.CutText(item.Body)
+                    </td>
+                    <td>
+                        @item.SelectCategorie
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @if (item.Author != null)
                         {
-                            @c.Text@:;<br>
+                            @item.Author.UserName
+                        }
+                        else
+                        {
+                            <i>(No Author)</i>
+                        }
+                    </td>
+                    <td>
+                        @if (item.Comments.Count > 0)
+                        {
+                            foreach (var c in item.Comments)
+                            {
+                                @c.Text@:;<br>
                     }
-                    }
-                    else
-                    {
-                        <i>(No Comments)</i>
-                    }
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Comments", "Index", "Comments/Create") |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-            </tr>
+                        }
+                        else
+                        {
+                            <i>(No Comments)</i>
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Comments", "Index", "Comments/Create") |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
         }
-    }
 </table>

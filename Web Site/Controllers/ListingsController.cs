@@ -21,12 +21,29 @@ namespace Web_Site.Controllers
         // GET: Listings
         public ActionResult Index(string searchBy, string search)
         {
-            return View(db.Listings.Include(p => p.Author).ToList());
+            if (searchBy != null && searchBy.Equals("Title"))
+            {
+                return View("Search",
+                    db.Listings.Include(p => p.Author)
+                    .Where(l => l.Title.ToLower().Contains(search.ToLower()) || search == null)
+                    .ToList());
+            }
+            else if (searchBy != null && searchBy.Equals("Author"))
+            {
+                return View("Search",
+                    db.Listings.Include(p => p.Author)
+                        .Where(l => l.Author.UserName.ToLower().Contains(search.ToLower()) || search == null)
+                        .ToList());
+            }
+            else
+            {
+                return View(db.Listings.Include(p => p.Author).ToList());
+            }
         }
-        //public ActionResult SelectedCategorie()
-        //{
-        //    return View(db.Listings.Include("SelectCategorie").ToList());
-        //}
+        public ActionResult SelectedCategorie()
+        {
+            return View(db.Listings.Include(c => c.Author).ToList());
+        }
 
         // GET: Listings/Details/5
         public ActionResult Details(int? id)
@@ -138,20 +155,10 @@ namespace Web_Site.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Body,Date")] Listings listings, IEnumerable<HttpPostedFileBase> files, string action)
+        public ActionResult Edit([Bind(Include = "Id,Title,Body,Date,SelectCategorie,Price,ContactNumber")] Listings listings, IEnumerable<HttpPostedFileBase> files)
         {
-            
-            //var listingAuthor = listings.Id;
-           // var currentUserId = User.Identity.GetUserId();
-           // if (User.IsInRole("Admin") || User.Identity.GetUserId() == listings.Author_Id)
-            
-            listings = db.Listings.Include(l => l.Files).SingleOrDefault(l => l.Id == listings.Id);
-            if (ModelState.IsValid)
 
-            {
-
-
-                string request = Request.Form["check"];
+            string request = Request.Form["check"];
 
             var tempListing = listings;
 
@@ -212,8 +219,8 @@ namespace Web_Site.Controllers
                 return RedirectToAction($"Details/{listings.Id}");
             }
 
-        return View(listings);
-    }
+            return View(listings);
+        }
 
         // GET: Listings/Delete/5
         [Authorize]
