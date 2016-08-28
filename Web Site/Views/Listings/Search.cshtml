@@ -58,7 +58,7 @@
                     }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Comments)
+                    @Html.DisplayFor(modelItem => item.Comments.Count)
                 </td>
                 <td>
                     @if (User.IsInRole("Admin") || User.Identity.Name == item.Author.UserName)
