@@ -84,7 +84,9 @@
             foreach (var file in Model.Files)
             {
                 <div class="imageDiv">
-                    <img src="~/File?id=@file.FileId" />
+                    <a href="javascript:;" onClick="ShowPopup(@file.FileId)">
+                        <img src="~/File?id=@file.FileId" />
+                    </a>  
                 </div>
                 <br />
             }
