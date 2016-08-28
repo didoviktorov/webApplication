@@ -17,7 +17,7 @@
             @Html.DisplayNameFor(model => model.Body)
         </th>
         <th>
-           @Html.DisplayNameFor(model => model.SelectCategorie)
+           @Html.DisplayNameFor(model => model.CategorieName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Date)
@@ -40,7 +40,7 @@
                 @Utils.CutText(item.Body)
             </td>
             <td>
-                @item.SelectCategorie
+               @item.CategorieName
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)

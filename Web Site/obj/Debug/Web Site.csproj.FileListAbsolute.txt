@@ -247,6 +247,3 @@ C:\Users\yohanes\Desktop\SofUni\TeamProjects\TechModule\SoftUni_Web-master\SoftU
 C:\Users\yohanes\Documents\GitHub\SoftUni_Web\Web Site\obj\Debug\Web Site.csprojResolveAssemblyReference.cache
 C:\Users\yohanes\Documents\GitHub\SoftUni_Web\Web Site\obj\Debug\Web Site.dll
 C:\Users\yohanes\Documents\GitHub\SoftUni_Web\Web Site\obj\Debug\Web Site.pdb
-C:\softuni\SoftTech Course Project\SoftUni_Web\Web Site\obj\Debug\Web Site.csprojResolveAssemblyReference.cache
-C:\softuni\SoftTech Course Project\SoftUni_Web\Web Site\obj\Debug\Web Site.dll
-C:\softuni\SoftTech Course Project\SoftUni_Web\Web Site\obj\Debug\Web Site.pdb

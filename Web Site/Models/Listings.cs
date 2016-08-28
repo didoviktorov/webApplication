@@ -30,11 +30,6 @@ namespace Web_Site.Models
 
         public string Author_Id { get; set; }
 
-        internal string ToString(object selectCategorie)
-        {
-            throw new NotImplementedException();
-        }
-
         [ForeignKey("Author_Id")]
         public ApplicationUser Author { get; set; }
 
@@ -42,13 +37,7 @@ namespace Web_Site.Models
 
         public virtual ICollection<File> Files { get; set; }
 
-        public enum Categories
-        {
-            Cars,
-            Pets,
-            Vacation,
-            Other
-        }
-        public virtual Categories SelectCategorie { get; set; }
+        public virtual IEnumerator<Categorie> Categories { get; set; }
+        public string CategorieName { get; set; }
     }
 }
