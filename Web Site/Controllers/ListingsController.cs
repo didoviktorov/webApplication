@@ -155,7 +155,7 @@ namespace Web_Site.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Body,Date,SelectCategorie,Price,ContactNumber")] Listings listings, IEnumerable<HttpPostedFileBase> files, string action)
+        public ActionResult Edit([Bind(Include = "Id,Title,Body,Date,SelectCategorie,Price,ContactNumber")] Listings listings, IEnumerable<HttpPostedFileBase> files)
         {            
           
             string request = Request.Form["check"];
@@ -170,6 +170,7 @@ namespace Web_Site.Controllers
             listings.SelectCategorie = tempListing.SelectCategorie;
             listings.Price = tempListing.Price;
             listings.ContactNumber = tempListing.ContactNumber;
+
             if (ModelState.IsValid)
             {
                 var allowedExtensions = new[] { ".jpg", ".png", ".gif" };
