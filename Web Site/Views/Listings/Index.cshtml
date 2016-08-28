@@ -9,7 +9,7 @@
 <p>
     @using (Html.BeginForm("Index", "Listings", FormMethod.Get))
     {
-        <b>Search by: </b>@Html.RadioButton("searchBy", "Title") <text>Title</text>
+        <b>Search by: </b>@Html.RadioButton("searchBy", "Title", true) <text>Title</text>
         @Html.RadioButton("searchBy", "Author")
         <text>Author's UserName</text>
         <br />
