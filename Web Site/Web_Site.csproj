@@ -373,12 +373,12 @@
     <Content Include="Views\Comments\Details.cshtml" />
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
-    <None Include="Views\Listings\Search.cshtml" />
     <Content Include="Views\Shared\GuestLayout.cshtml" />
     <Content Include="Views\Shared\UserLayout.cshtml" />
     <Content Include="Web_Site.csproj~Comments" />
     <Content Include="Views\Shared\AdminLayout.cshtml" />
     <Content Include="Views\Listings\SelectedCategorie.cshtml" />
+    <Content Include="Views\Listings\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Comment\" />
