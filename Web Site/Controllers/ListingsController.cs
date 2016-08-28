@@ -75,7 +75,7 @@ namespace Web_Site.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Body, SelectCategorie")] Listings listings, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Create([Bind(Include = "Id,Title,Body,SelectCategorie,Price,ContactNumber")] Listings listings, IEnumerable<HttpPostedFileBase> files)
         {
             if (ModelState.IsValid)
             {
@@ -146,87 +146,78 @@ namespace Web_Site.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public ActionResult Edit([Bind(Include = "Id,Title,Body,Date")] Listings listings, IEnumerable<HttpPostedFileBase> files, string action)
         {
+=======
+        public ActionResult Edit([Bind(Include = "Id,Title,Body,Date,SelectCategorie,Price,ContactNumber")] Listings listings, IEnumerable<HttpPostedFileBase> files, string action)
+        {            
+            //var listingAuthor = listings.Id;
+           // var currentUserId = User.Identity.GetUserId();
+           // if (User.IsInRole("Admin") || User.Identity.GetUserId() == listings.Author_Id)
+
+            string request = Request.Form["check"];
+
+            var tempListing = listings;
+>>>>>>> origin/master
             listings = db.Listings.Include(l => l.Files).SingleOrDefault(l => l.Id == listings.Id);
+            listings.Title = tempListing.Title;
+            listings.Body = tempListing.Body;
+            listings.Date = tempListing.Date;
+            listings.Comments = tempListing.Comments;
+            listings.SelectCategorie = tempListing.SelectCategorie;
+            listings.Price = tempListing.Price;
+            listings.ContactNumber = tempListing.ContactNumber;
             if (ModelState.IsValid)
-
             {
-
-
-                string request = Request.Form["check"];
-
-                var tempListing = listings;
-                listings = db.Listings.Include(l => l.Files).SingleOrDefault(l => l.Id == listings.Id);
-                listings.Title = tempListing.Title;
-                listings.Body = tempListing.Body;
-                listings.Date = tempListing.Date;
-                listings.Comments = tempListing.Comments;
-                if (ModelState.IsValid)
+                var allowedExtensions = new[] { ".jpg", ".png", ".gif" };
+                foreach (var file in files)
                 {
-                    var allowedExtensions = new[] { ".jpg", ".png", ".gif" };
-                    foreach (var file in files)
+                    if (file != null)
                     {
-                        if (file != null)
+                        string extension = file.FileName.Substring(file.FileName.LastIndexOf(".")).ToLower();
+                        if (!allowedExtensions.Contains(extension))
                         {
-                            string extension = file.FileName.Substring(file.FileName.LastIndexOf(".")).ToLower();
-                            if (!allowedExtensions.Contains(extension))
-                            {
-                                TempData["notice"] = "Select .jpg, .png or .gif files format";
-                                return View(listings);
-                            }
-                            else if (file.ContentLength > 1024 * 1024)
-                            {
-                                TempData["notice"] = "Select files less than 2MB";
-                                return View(listings);
-                            }
+                            TempData["notice"] = "Select .jpg, .png or .gif files format";
+                            return View(listings);
                         }
-                        if (file != null && file.ContentLength > 0)
+                        else if (file.ContentLength > 1024 * 1024)
                         {
-                            var image = new File
-                            {
-                                FileName = System.IO.Path.GetFileName(file.FileName),
-                                ContentType = file.ContentType
-                            };
-                            using (var reader = new System.IO.BinaryReader(file.InputStream))
-                            {
-                                image.Content = reader.ReadBytes(file.ContentLength);
-                            }
-                            listings.Files.Add(image);
+                            TempData["notice"] = "Select files less than 2MB";
+                            return View(listings);
                         }
                     }
-
-                    if (request != null)
+                    if (file != null && file.ContentLength > 0)
                     {
-                        int[] actionArgs = request.Split(',').Select(int.Parse).ToArray(); ;
-                        foreach (int fileIdToRemove in actionArgs)
+                        var image = new File
                         {
-                            db.Files.Remove(listings.Files.First(f => f.FileId == fileIdToRemove));
+                            FileName = System.IO.Path.GetFileName(file.FileName),
+                            ContentType = file.ContentType
+                        };
+                        using (var reader = new System.IO.BinaryReader(file.InputStream))
+                        {
+                            image.Content = reader.ReadBytes(file.ContentLength);
                         }
+                        listings.Files.Add(image);
                     }
-
-
-                    db.Entry(listings).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
                 }
 
-                //if (request != null)
-                //{
-                //    int[] actionArgs = request.Split(',').Select(int.Parse).ToArray(); ;
-                //    foreach (int fileIdToRemove in actionArgs)
-                //    {
-                //        db.Files.Remove(listings.Files.First(f => f.FileId == fileIdToRemove));
-                //    }
-                //}
+                if (request != null)
+                {
+                    int[] actionArgs = request.Split(',').Select(int.Parse).ToArray(); ;
+                    foreach (int fileIdToRemove in actionArgs)
+                    {
+                        db.Files.Remove(listings.Files.First(f => f.FileId == fileIdToRemove));
+                    }
+                }
 
                 db.Entry(listings).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
-
             }
-            return View(listings);
-        }
+
+        return View(listings);
+    }
 
         // GET: Listings/Delete/5
         [Authorize]
