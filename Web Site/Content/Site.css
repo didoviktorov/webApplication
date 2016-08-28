@@ -101,3 +101,7 @@ textarea {
 .comment-box{
     border: 1px solid black;
 }
+
+.comment_col {
+    text-align: center;
+}

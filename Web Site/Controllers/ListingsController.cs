@@ -19,9 +19,26 @@ namespace Web_Site.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Listings
-        public ActionResult Index()
+        public ActionResult Index(string searchBy, string search)
         {
-            return View(db.Listings.Include(p => p.Author).ToList());
+            if (searchBy != null && searchBy.Equals("Title"))
+            {
+                return View("Search",
+                    db.Listings.Include(p => p.Author)
+                    .Where(l => l.Title.ToLower().Contains(search.ToLower()) || search == null)
+                    .ToList());
+            }
+            else if (searchBy != null && searchBy.Equals("Author"))
+            {
+                return View("Search",
+                    db.Listings.Include(p => p.Author)
+                        .Where(l => l.Author.UserName.ToLower().Contains(search.ToLower()) || search == null)
+                        .ToList());
+            }
+            else
+            {
+                return View(db.Listings.Include(p => p.Author).ToList());
+            }
         }
         //public ActionResult SelectedCategorie()
         //{
@@ -36,8 +53,7 @@ namespace Web_Site.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Listings listings = db.Listings.Find(id);
-            listings = db.Listings.Include(l => l.Files).SingleOrDefault(l => l.Id == id);
+            Listings listings = db.Listings.Include(l => l.Author).Single(l => l.Id == id);
             if (listings == null)
             {
                 return HttpNotFound();

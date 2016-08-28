@@ -5,9 +5,18 @@
     ViewBag.Title = "Index";
 }
 <h2>Listings</h2>
+
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @using (Html.BeginForm("Index", "Listings", FormMethod.Get))
+    {
+        <b>Search by: </b>@Html.RadioButton("searchBy", "Title") <text>Title</text>
+        @Html.RadioButton("searchBy", "Author")
+        <text>Author's UserName</text>
+        <br />
+        @Html.TextBox("search") <input type="submit" value="Search" />
+    }
 </p>
+
 <table class="table">
     <tr>
         <th>
@@ -55,13 +64,10 @@
                     <i>(No Author)</i>
                 }
             </td>
-            <td>
+            <td class="comment_col">
                 @if (item.Comments.Count > 0)
                 {
-                    foreach (var c in item.Comments)
-                    {
-                        @c.Text@:;<br>
-                    }
+                    <div>@item.Comments.Count</div>
                 }
                 else
                 {
