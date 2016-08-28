@@ -58,6 +58,11 @@
                 @if (item.Author != null)
                 {
                     @item.Author.UserName
+                    if (item.Author.FullName != null)
+                    {
+                        <br />
+                        <i>(@item.Author.FullName)</i>
+                    }
                 }
                 else
                 {

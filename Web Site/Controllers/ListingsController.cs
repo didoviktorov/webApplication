@@ -137,6 +137,15 @@ namespace Web_Site.Controllers
             {
                 return HttpNotFound();
             }
+            // Check If User is Admin or it's the author of the Listing
+            if (User.IsInRole("Admin"))
+            {
+                return View(listings);
+            }
+            if (User.Identity.GetUserId() != listings.Author_Id)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
             return View(listings);
         }
 
@@ -146,20 +155,13 @@ namespace Web_Site.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-<<<<<<< HEAD
-        public ActionResult Edit([Bind(Include = "Id,Title,Body,Date")] Listings listings, IEnumerable<HttpPostedFileBase> files, string action)
-        {
-=======
         public ActionResult Edit([Bind(Include = "Id,Title,Body,Date,SelectCategorie,Price,ContactNumber")] Listings listings, IEnumerable<HttpPostedFileBase> files, string action)
         {            
-            //var listingAuthor = listings.Id;
-           // var currentUserId = User.Identity.GetUserId();
-           // if (User.IsInRole("Admin") || User.Identity.GetUserId() == listings.Author_Id)
-
+          
             string request = Request.Form["check"];
 
             var tempListing = listings;
->>>>>>> origin/master
+
             listings = db.Listings.Include(l => l.Files).SingleOrDefault(l => l.Id == listings.Id);
             listings.Title = tempListing.Title;
             listings.Body = tempListing.Body;
@@ -231,6 +233,15 @@ namespace Web_Site.Controllers
             if (listings == null)
             {
                 return HttpNotFound();
+            }
+            // Check If User is Admin or it's the author of the Listing
+            if (User.IsInRole("Admin"))
+            {
+                return View(listings);
+            }
+            if (User.Identity.GetUserId() != listings.Author_Id)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
             return View(listings);
         }
