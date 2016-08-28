@@ -144,7 +144,7 @@ namespace Web_Site.Controllers
             }
             if (User.Identity.GetUserId() != listings.Author_Id)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+                return View("Error");
             }
             return View(listings);
         }
@@ -215,7 +215,7 @@ namespace Web_Site.Controllers
 
                 db.Entry(listings).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction($"Details/{listings.Id}");
             }
 
         return View(listings);
@@ -241,7 +241,7 @@ namespace Web_Site.Controllers
             }
             if (User.Identity.GetUserId() != listings.Author_Id)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+                return View("Error");
             }
             return View(listings);
         }
