@@ -40,7 +40,7 @@
                 @Utils.CutText(item.Body)
             </td>
             <td>
-                @item.SelectCategorie
+                <a href="/Listings/SelectedCategorie/@item.SelectCategorie" style="color: darkred">@item.SelectCategorie</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
@@ -71,7 +71,7 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Comments", "Index", "Comments/Create") |
+                <a href="/Comments/Create/@item.Id">Add Comment</a> |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>

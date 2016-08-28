@@ -23,15 +23,15 @@ namespace Web_Site.Controllers
         {
             return View(db.Listings.Include(p => p.Author).ToList());
         }
-        //public ActionResult SelectedCategorie()
-        //{
-        //    return View(db.Listings.Include("SelectCategorie").ToList());
-        //}
+        public ActionResult SelectedCategorie()
+        {
+            return View(db.Listings.Include(p => p.Author).ToList());
+        }
 
         // GET: Listings/Details/5
         public ActionResult Details(int? id)
         {
-            
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -132,11 +132,11 @@ namespace Web_Site.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Title,Body,Date")] Listings listings, IEnumerable<HttpPostedFileBase> files, string action)
         {
-            
+
             //var listingAuthor = listings.Id;
-           // var currentUserId = User.Identity.GetUserId();
-           // if (User.IsInRole("Admin") || User.Identity.GetUserId() == listings.Author_Id)
-            
+            // var currentUserId = User.Identity.GetUserId();
+            // if (User.IsInRole("Admin") || User.Identity.GetUserId() == listings.Author_Id)
+
             listings = db.Listings.Include(l => l.Files).SingleOrDefault(l => l.Id == listings.Id);
             if (ModelState.IsValid)
 
