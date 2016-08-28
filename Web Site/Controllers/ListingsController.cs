@@ -132,11 +132,6 @@ namespace Web_Site.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Title,Body,Date")] Listings listings, IEnumerable<HttpPostedFileBase> files, string action)
         {
-            
-            //var listingAuthor = listings.Id;
-           // var currentUserId = User.Identity.GetUserId();
-           // if (User.IsInRole("Admin") || User.Identity.GetUserId() == listings.Author_Id)
-            
             listings = db.Listings.Include(l => l.Files).SingleOrDefault(l => l.Id == listings.Id);
             if (ModelState.IsValid)
 
