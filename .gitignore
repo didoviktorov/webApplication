@@ -249,3 +249,4 @@ Web Site/bin/Web Site.pdb
 Web Site/obj/Debug/Web Site.dll
 Web Site/obj/Debug/Web Site.pdb
 Web Site/bin/Web Site.pdb
+*.cache
