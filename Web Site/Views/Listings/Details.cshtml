@@ -13,9 +13,11 @@
         <dt>
             @Html.Label("Categorie")
         </dt>
+
         <dd>
             @Model.SelectCategorie
         </dd>
+
         <dt>
             @Html.Label("Photo")
         </dt>
@@ -48,6 +50,44 @@
 
         <dd>
             <textarea class="form-control text-box multi-line valid" disabled="disabled" rows="20">@Html.DisplayFor(model => model.Body)</textarea>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author.Email)
+        </dt>
+
+        <dd>
+            @if (Model.Author == null)
+            {
+                <i>(No Email)</i>
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.Author.Email)
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactNumber)
+        </dt>
+
+        <dd>
+            @if (Model.ContactNumber == null)
+            {
+                <i>(Is not provided contact number)</i>
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.ContactNumber)
+            }
         </dd>
 
         <dt>
