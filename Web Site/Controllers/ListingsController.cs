@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Web_Site.Models;
+using System.Web.UI.WebControls;
+using System.Collections;
 
 namespace Web_Site.Controllers
 {
@@ -21,6 +23,10 @@ namespace Web_Site.Controllers
         {
             return View(db.Listings.Include(p => p.Author).ToList());
         }
+        //public ActionResult SelectedCategorie()
+        //{
+        //    return View(db.Listings.Include("SelectCategorie").ToList());
+        //}
 
         // GET: Listings/Details/5
         public ActionResult Details(int? id)
@@ -43,7 +49,7 @@ namespace Web_Site.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.CategorieName = new SelectList(db.Categories, "Id", "CategorieName");
+            ViewBag.SelectCategorie = new SelectList(db.Listings, "Id", "SelectCategorie");
             return View();
         }
 
@@ -53,7 +59,7 @@ namespace Web_Site.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Body, CategorieName")] Listings listings, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Create([Bind(Include = "Id,Title,Body, SelectCategorie")] Listings listings, IEnumerable<HttpPostedFileBase> files)
         {
             if (ModelState.IsValid)
             {

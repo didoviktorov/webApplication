@@ -24,8 +24,6 @@ namespace Web_Site.Models
 
         public DbSet<Comment> Comments { get; set; }
 
-        public System.Data.Entity.DbSet<Web_Site.Models.Categorie> Categories { get; set; }
-
         // public System.Data.Entity.DbSet<Web_Site.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

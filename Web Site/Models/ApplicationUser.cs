@@ -9,6 +9,7 @@ namespace Web_Site.Models
     public class ApplicationUser : IdentityUser
     {
         public string FullName { get; set; }
+        public string SelectCategorie { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
