@@ -59,7 +59,7 @@ textarea {
   top: -__px;  
 }
 .listings-title{
-    color: black;
+    color: #FFFAF0;
 }
 .listings-background{
     border-radius: 8px;
@@ -80,7 +80,7 @@ textarea {
     font-weight: bold;
 }
 .posts{
-     border: solid thick black;
+     border: solid thick #FFFAF0;
      border-radius: 1em;
      margin:40px;
      height: 300px;
