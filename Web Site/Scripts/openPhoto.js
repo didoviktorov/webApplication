@@ -13,6 +13,10 @@ function displayPreviousImage() {
 }
 
 function startTimer() {
+    setInterval(displayNextImage, 6000);
 }
 
 var images = [], x = -1;
+images[0] = "/Content/Images/cars.jpg";
+images[1] = "/Content/Images/pets.jpg";
+images[2] = "/Content/Images/excursions.jpg";
