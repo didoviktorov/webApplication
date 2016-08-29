@@ -79,7 +79,7 @@
                     <i>(No Comments)</i>
                 }
             </td>
-            <td>
+            <td align="center">
                 @{ var data = new ItemIdAuthor { ItemId = item.Id, Author = item.Author.UserName }; }
                 @Html.Partial("ActionMenu", data)
             </td>
