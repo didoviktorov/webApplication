@@ -53,10 +53,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.SelectCategorie)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", "Listings", new { id = item.Id }, null) |
-            @Html.ActionLink("Details", "Details", "Listings", new { id = item.Id }, null) |
-            @Html.ActionLink("Delete", "Delete", "Listings", new { id=item.Id }, null)
+        <td align="center">
+            @{ var data = new ItemIdAuthor { ItemId = item.Id, Author = item.Author.UserName }; }
+            @Html.Partial("ActionMenu", data)
         </td>
     </tr>
 }

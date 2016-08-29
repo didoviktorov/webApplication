@@ -23,8 +23,9 @@ namespace Web_Site.Controllers
         public ActionResult Index()
         {
             var currentUserId = User.Identity.GetUserId();
-            var listings = db.Listings.Where(l => l.Author_Id.ToString() == currentUserId).ToList();
-            return View(listings);
+            var listings = db.Listings.Include(p => p.Author)
+                .Where(l => l.Author_Id.ToString() == currentUserId);
+            return View(listings.ToList());
         }
 
         protected override void Dispose(bool disposing)
