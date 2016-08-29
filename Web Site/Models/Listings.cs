@@ -58,5 +58,7 @@ namespace Web_Site.Models
             Other
         }
         public virtual Categories SelectCategorie { get; set; }
+
+        public virtual ICollection<Towns> Town { get; set; }
     }
 }

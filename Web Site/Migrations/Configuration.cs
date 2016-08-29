@@ -34,22 +34,23 @@ namespace Web_Site.Migrations
 
 
             // Add Admin Role to Roles Table
-           /* var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            string[] roleNames = { "Admin", "User" };
-            IdentityResult roleResult;
-            foreach (var roleName in roleNames)
-            {
-                if (!RoleManager.RoleExists(roleName))
-                {
-                    roleResult = RoleManager.Create(new IdentityRole(roleName));
-                }
-            }
-            */
+            /* var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+             string[] roleNames = { "Admin", "User" };
+             IdentityResult roleResult;
+             foreach (var roleName in roleNames)
+             {
+                 if (!RoleManager.RoleExists(roleName))
+                 {
+                     roleResult = RoleManager.Create(new IdentityRole(roleName));
+                 }
+             }
+             */
 
             // Change From User to Admin Role by User Id
-            /* var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            UserManager.AddToRole("995d4a5b-6d23-45df-a4ee-0a1674a5aaf9", "Admin");
-            UserManager.RemoveFromRole("995d4a5b-6d23-45df-a4ee-0a1674a5aaf9", "User"); */
+            /* string userId = "f36b717e-b680-4846-b1b1-b0c0606e881f";
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            UserManager.AddToRole(userId, "Admin");
+            UserManager.RemoveFromRole(userId, "User"); */
         }
     }
 }

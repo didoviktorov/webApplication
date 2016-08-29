@@ -199,6 +199,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Classes\ItemIdAuthorId.cs" />
     <Compile Include="Classes\Utils.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
@@ -207,6 +208,7 @@
     <Compile Include="Controllers\ListingsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MyAdsController.cs" />
+    <Compile Include="Controllers\TownsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -218,6 +220,7 @@
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\Listings.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Towns.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -382,6 +385,12 @@
     <Content Include="Views\Listings\SelectedCategorie.cshtml" />
     <Content Include="Views\Listings\Search.cshtml" />
     <Content Include="Views\MyAds\Index.cshtml" />
+    <Content Include="Views\Shared\ActionMenu.cshtml" />
+    <Content Include="Views\Towns\Create.cshtml" />
+    <Content Include="Views\Towns\Delete.cshtml" />
+    <Content Include="Views\Towns\Details.cshtml" />
+    <Content Include="Views\Towns\Edit.cshtml" />
+    <Content Include="Views\Towns\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
