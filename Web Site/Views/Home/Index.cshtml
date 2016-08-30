@@ -11,7 +11,7 @@
 
 
 
-<div class="last-listings">Last Listings </div>
+<div style="font-family:Oswald" class="last-listings">Last Listings </div>
 <div class="listings-background">
     <section class="home row">
         <div class="posts row">
@@ -23,7 +23,7 @@
                     <img src="~/File?id=@imgFile" alt="@list.Title">
                     <div class="caption">
                         <h3>@list.Title</h3>
-                        <p>@Web_Site.Classes.Utils.CutText(list.Body)</p>
+                        <p>@Web_Site.Classes.Utils.CutText(list.Body,45)</p>
                         <p><a href="@Url.Action("Details", "Listings", new { id = list.Id})" class="btn btn-info" role="button">More info</a>
                     </div>
                 </div>
