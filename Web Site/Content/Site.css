@@ -1,6 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    color: #ffe8c8;
+    background-image:url(Images/background2.jpg);
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -90,7 +92,7 @@ textarea {
     border-radius: 4px;
     height: 35px;
     font-size: 18px;
-    color: #FFFAF0;
+    color: #ffe8c8;
     font-weight: bold;
 }
 
@@ -114,4 +116,30 @@ textarea {
       /* OPTIONAL: use this to adjust where the 'center' starts */
       /* only useful on images that will be clipped */
   top: -__px;  
+}
+
+.navbar-inverse {
+    background-image:url('Images/background -1.jpg');
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #FFFAF0;
+}
+
+a {
+  color: #FFFAF0;
+  text-decoration: none;
+}
+
+.table thead > tr > th,
+.table tbody > tr > th,
+.table tfoot > tr > th,
+.table thead > tr > td,
+.table tbody > tr > td,
+.table tfoot > tr > td {
+    border-top: 1px solid black;
+}
+
+hr {
+    border-top: 1px solid #ffe8c8;
 }
