@@ -65,7 +65,7 @@ namespace Web_Site.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.SelectCategorie = new SelectList(db.Listings, "Id", "SelectCategorie");
+            ViewBag.SelectCategorie = new SelectList(db.Listings, "Id", "Category");
             return View();
         }
 
@@ -167,7 +167,7 @@ namespace Web_Site.Controllers
             listings.Body = tempListing.Body;
             listings.Date = tempListing.Date;
             listings.Comments = tempListing.Comments;
-            listings.SelectCategorie = tempListing.SelectCategorie;
+            listings.Category = tempListing.Category;
             listings.Price = tempListing.Price;
             listings.ContactNumber = tempListing.ContactNumber;
 

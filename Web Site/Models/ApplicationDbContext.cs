@@ -24,5 +24,8 @@ namespace Web_Site.Models
 
         public DbSet<Comment> Comments { get; set; }
 
+        public DbSet<Towns> Towns { get; set; }
+
+        public DbSet<Categories> Categories { get; set; }
     }
 }

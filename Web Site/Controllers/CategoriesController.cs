@@ -10,6 +10,7 @@ using Web_Site.Models;
 
 namespace Web_Site.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CategoriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -18,21 +19,6 @@ namespace Web_Site.Controllers
         public ActionResult Index()
         {
             return View(db.Categories.ToList());
-        }
-
-        // GET: Categories/Details/5
-        public ActionResult Details(Guid? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Categorie categorie = db.Categories.Find(id);
-            if (categorie == null)
-            {
-                return HttpNotFound();
-            }
-            return View(categorie);
         }
 
         // GET: Categories/Create
@@ -46,32 +32,31 @@ namespace Web_Site.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CategorieName")] Categorie categorie)
+        public ActionResult Create([Bind(Include = "Id,Category")] Categories categories)
         {
             if (ModelState.IsValid)
             {
-                categorie.Id = Guid.NewGuid();
-                db.Categories.Add(categorie);
+                db.Categories.Add(categories);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(categorie);
+            return View(categories);
         }
 
         // GET: Categories/Edit/5
-        public ActionResult Edit(Guid? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categorie categorie = db.Categories.Find(id);
-            if (categorie == null)
+            Categories categories = db.Categories.Find(id);
+            if (categories == null)
             {
                 return HttpNotFound();
             }
-            return View(categorie);
+            return View(categories);
         }
 
         // POST: Categories/Edit/5
@@ -79,39 +64,39 @@ namespace Web_Site.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CategorieName")] Categorie categorie)
+        public ActionResult Edit([Bind(Include = "Id,Category")] Categories categories)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(categorie).State = EntityState.Modified;
+                db.Entry(categories).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(categorie);
+            return View(categories);
         }
 
         // GET: Categories/Delete/5
-        public ActionResult Delete(Guid? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Categorie categorie = db.Categories.Find(id);
-            if (categorie == null)
+            Categories categories = db.Categories.Find(id);
+            if (categories == null)
             {
                 return HttpNotFound();
             }
-            return View(categorie);
+            return View(categories);
         }
 
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Categorie categorie = db.Categories.Find(id);
-            db.Categories.Remove(categorie);
+            Categories categories = db.Categories.Find(id);
+            db.Categories.Remove(categories);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

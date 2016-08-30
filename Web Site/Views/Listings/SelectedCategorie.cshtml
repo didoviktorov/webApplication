@@ -17,7 +17,7 @@
                     @Html.DisplayNameFor(model => model.Body)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.SelectCategorie)
+                    @Html.DisplayNameFor(model => model.Category)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Date)
@@ -32,7 +32,7 @@
             </tr>
             @foreach (var item in Model)
             {
-                if (item.SelectCategorie.ToString() == categoryMode)
+                if (item.Category.ToString() == categoryMode)
                 { 
                 <tr>
                     <td>
@@ -42,7 +42,7 @@
                         @Utils.CutText(item.Body)
                     </td>
                     <td>
-                        @item.SelectCategorie
+                        @item.Category
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Date)
