@@ -314,8 +314,6 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
-  color: #333333;
-  background-color: #ffffff;
 }
 
 input,
@@ -335,7 +333,7 @@ textarea {
 }
 
 a {
-  color: #FFFAF0;
+  color: #428bca;
   text-decoration: none;
 }
 
@@ -1427,7 +1425,7 @@ th {
   padding: 8px;
   line-height: 1.428571429;
   vertical-align: top;
-  border-top: 1px solid black;
+  border-top: 1px solid #dddddd;
 }
 
 .table thead > tr > th {
@@ -4501,7 +4499,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-image:url('Images/background -1.jpg');
+  background-color: #222222;
   border-color: #080808;
 }
 
@@ -4520,7 +4518,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  color: #FFFAF0;
+  color: #999999;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover,
