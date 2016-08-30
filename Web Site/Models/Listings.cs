@@ -59,6 +59,5 @@ namespace Web_Site.Models
         }
         public virtual Categories SelectCategorie { get; set; }
 
-        public virtual ICollection<Towns> Town { get; set; }
     }
 }

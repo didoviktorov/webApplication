@@ -59,7 +59,7 @@ textarea {
   top: -__px;  
 }
 .listings-title{
-    color: black;
+    color: #FFFAF0;
 }
 .listings-background{
     border-radius: 8px;
@@ -67,9 +67,9 @@ textarea {
 .last-listings {
     font-family: Open Sans;
     margin: 20px;
-    border: 3px black;
+    border: 3px #DAA520;
     border-style: solid;
-    color:black;
+    color:#FFD700;
     height : 100px;
     width: 1100px;
     border-radius: 10px;
@@ -80,17 +80,17 @@ textarea {
     font-weight: bold;
 }
 .posts{
-     border: solid thick black;
+     border: solid thick #DAA520;
      border-radius: 1em;
      margin:40px;
      height: 300px;
 }
 .footers {
-    background-color:white;
+    
     border-radius: 4px;
     height: 35px;
     font-size: 18px;
-    color: black;
+    color: #FFFAF0;
     font-weight: bold;
 }
 
@@ -104,4 +104,14 @@ textarea {
 
 .comment_col {
     text-align: center;
+}
+
+
+.jumbotron img{
+  width: 100%;  /* makes image 100% width of the container */
+  height: 400px;
+  position: relative; /* allows movement inside the container */
+      /* OPTIONAL: use this to adjust where the 'center' starts */
+      /* only useful on images that will be clipped */
+  top: -__px;  
 }
