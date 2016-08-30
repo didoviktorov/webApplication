@@ -32,8 +32,7 @@ textarea {
 }
 
 .logo img:hover {
-  border: solid 2px white;
-  margin: -2px;
+  outline: 2px solid white;
 }
 
 .imageDiv {
