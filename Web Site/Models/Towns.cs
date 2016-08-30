@@ -8,12 +8,11 @@ namespace Web_Site.Models
 {
     public class Towns
     {
-        [Key]
-        public int TownId { get; set; }
+        public int Id { get; set; }
 
-        [StringLength(70)]
-        public string TownName { get; set; }
+        [StringLength(90)]
+        public string Town { get; set; }
 
-        public virtual Listings Listing { get; set; }
+        public virtual IEnumerable<Listings> Listing { get; set; }
     }
 }

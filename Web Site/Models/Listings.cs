@@ -50,14 +50,8 @@ namespace Web_Site.Models
 
         public virtual ICollection<File> Files { get; set; }
 
-        public enum Categories
-        {
-            Cars,
-            Pets,
-            Vacation,
-            Other
-        }
-        public virtual Categories SelectCategorie { get; set; }
+        public virtual Categories Category { get; set; }
 
+        public virtual Towns Town { get; set; }
     }
 }

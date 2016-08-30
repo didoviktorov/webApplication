@@ -28,7 +28,7 @@
             @Html.DisplayNameFor(model => model.Date)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SelectCategorie)
+            @Html.DisplayNameFor(model => model.Category)
         </th>
         <th>Actions</th>
     </tr>
@@ -51,7 +51,7 @@
             @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SelectCategorie)
+            @Html.DisplayFor(modelItem => item.Category)
         </td>
         <td align="center">
             @{ var data = new ItemIdAuthor { ItemId = item.Id, Author = item.Author.UserName }; }

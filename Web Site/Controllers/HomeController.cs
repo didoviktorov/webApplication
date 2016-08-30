@@ -16,6 +16,7 @@ namespace Web_Site.Controllers
         {
             var latestPosts = db.Listings
                .Include(p => p.Author)
+               .Include(p => p.Files)
                .OrderByDescending(p => p.Date)
                .Take(6);
             return View(latestPosts);

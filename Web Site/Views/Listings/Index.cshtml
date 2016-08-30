@@ -26,7 +26,7 @@
             @Html.DisplayNameFor(model => model.Body)
         </th>
         <th>
-           @Html.DisplayNameFor(model => model.SelectCategorie)
+           @Html.DisplayNameFor(model => model.Category)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Date)
@@ -49,7 +49,7 @@
                 @Utils.CutText(item.Body)
             </td>
             <td>
-                <a href="/Listings/SelectedCategorie/@item.SelectCategorie" >@item.SelectCategorie</a>
+                <a href="/Listings/SelectedCategorie/@item.Category" >@item.Category</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)

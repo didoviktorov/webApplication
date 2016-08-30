@@ -1,6 +1,9 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    color: black;
+    /*background-image:url(Images/background2.jpg);*/
+    background-color: #FBCEB1;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -29,8 +32,7 @@ textarea {
 }
 
 .logo img:hover {
-  border: solid 2px white;
-  margin: -2px;
+  outline: 2px solid white;
 }
 
 .imageDiv {
@@ -65,32 +67,29 @@ textarea {
     border-radius: 8px;
 }
 .last-listings {
-    font-family: Open Sans;
-    margin: 20px;
-    border: 3px #DAA520;
-    border-style: solid;
-    color:#FFD700;
-    height : 100px;
-    width: 1100px;
+    margin: 10px;
+    border: 3px #F7E7CE;
+    border-style:solid;
+    color:black;
+    height : auto;
+    width: auto;
     border-radius: 10px;
     text-align: center;
     vertical-align: middle;
-    line-height: 90px;
-    font-size: 45px;
-    font-weight: bold;
+    line-height: 2em;
+    font-size: 50px;
+    font-weight:bold;
 }
 .posts{
-     border: solid thick #DAA520;
-     border-radius: 1em;
-     margin:40px;
-     height: 300px;
+     margin: 10px 15px;
+     border-bottom-color: #ffe8c8;
 }
 .footers {
     
     border-radius: 4px;
     height: 35px;
     font-size: 18px;
-    color: #FFFAF0;
+    color: black;
     font-weight: bold;
 }
 
@@ -113,5 +112,60 @@ textarea {
   position: relative; /* allows movement inside the container */
       /* OPTIONAL: use this to adjust where the 'center' starts */
       /* only useful on images that will be clipped */
-  top: -__px;  
+  top: -__px;
+    border-radius: 10px;
+}
+
+.navbar-inverse {
+    background-image:url('Images/background -1.jpg');
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #FFFAF0;
+}
+
+a {
+  color: #FFFAF0;
+  text-decoration: none;
+}
+
+.table thead > tr > th,
+.table tbody > tr > th,
+.table tfoot > tr > th,
+.table thead > tr > td,
+.table tbody > tr > td,
+.table tfoot > tr > td {
+    border-top: 1px solid black;
+}
+
+hr {
+    border-top: 1px solid #ffe8c8;
+}
+
+.thumbnail {
+    background-color: #F7E7CE;
+    border-radius: 20px;
+}
+
+.thumbnail .caption {
+    color: black;
+}
+
+.thumbnail > img {
+    height: 250px;
+}
+
+article {
+    margin: 15px 0px;
+}
+.team {
+    margin: 15px;
+    text-align: center;
+    border: solid;
+    border-radius: 8px;
+    width: 300px;
+    display: inline-block;
+    border-color: beige;
+    background-color:lightsalmon;
+    margin-left: 50px;
 }

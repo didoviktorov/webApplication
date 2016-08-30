@@ -10,6 +10,7 @@ using Web_Site.Models;
 
 namespace Web_Site.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class TownsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -18,21 +19,6 @@ namespace Web_Site.Controllers
         public ActionResult Index()
         {
             return View(db.Towns.ToList());
-        }
-
-        // GET: Towns/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Towns towns = db.Towns.Find(id);
-            if (towns == null)
-            {
-                return HttpNotFound();
-            }
-            return View(towns);
         }
 
         // GET: Towns/Create
@@ -46,7 +32,7 @@ namespace Web_Site.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TownId,TownName")] Towns towns)
+        public ActionResult Create([Bind(Include = "Id,Town")] Towns towns)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +64,7 @@ namespace Web_Site.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TownId,TownName")] Towns towns)
+        public ActionResult Edit([Bind(Include = "Id,Town")] Towns towns)
         {
             if (ModelState.IsValid)
             {
