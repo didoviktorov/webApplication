@@ -68,24 +68,22 @@ textarea {
 }
 .last-listings {
     font-family: Open Sans;
-    margin: 20px;
+    margin: 10px;
     border: 3px #DAA520;
     border-style: solid;
     color:#FFD700;
-    height : 100px;
-    width: 1100px;
+    height : auto;
+    width: auto;
     border-radius: 10px;
     text-align: center;
     vertical-align: middle;
-    line-height: 90px;
-    font-size: 45px;
+    line-height: 2em;
+    font-size: 2em;
     font-weight: bold;
 }
 .posts{
-     border: solid thick #DAA520;
-     border-radius: 1em;
-     margin:40px;
-     height: 300px;
+     margin: 10px 15px;
+     border-bottom-color: #ffe8c8;
 }
 .footers {
     
@@ -143,4 +141,20 @@ a {
 
 hr {
     border-top: 1px solid #ffe8c8;
+}
+
+.thumbnail {
+    background-color: transparent;
+}
+
+.thumbnail .caption {
+    color: #ffe8c8;
+}
+
+.thumbnail > img {
+    height: 250px;
+}
+
+article {
+    margin: 15px 0px;
 }
