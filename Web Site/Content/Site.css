@@ -158,3 +158,14 @@ hr {
 article {
     margin: 15px 0px;
 }
+.team {
+    margin: 15px;
+    text-align: center;
+    border: solid;
+    border-radius: 8px;
+    width: 300px;
+    display: inline-block;
+    border-color: beige;
+    background-color:lightsalmon;
+    margin-left: 50px;
+}
