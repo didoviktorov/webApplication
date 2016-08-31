@@ -28,7 +28,15 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Author.FullName)
+                @if (item.Author != null)
+                {
+                    @Html.DisplayFor(modelItem => item.Author.FullName)
+                }
+                else
+                {
+                    <i>No author</i>
+                }
+
             </td>
             <td>
                @Utils.CutText(item.Text)
