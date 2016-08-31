@@ -40,7 +40,7 @@ namespace Web_Site.Controllers
             return View(comment);
         }
 
-        public ActionResult CreateCommentToCurrentListing(int id)
+        public ActionResult CreateComment(int id)
         {
             var newComment = new Comment();
             newComment.ListingId = id;
@@ -50,7 +50,7 @@ namespace Web_Site.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateCommentToCurrentListing(Comment comment)
+        public ActionResult CreateComment(Comment comment)
         {
             if (ModelState.IsValid)
             {
