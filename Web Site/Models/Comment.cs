@@ -17,6 +17,8 @@ namespace Web_Site.Models
         public int CommentId { get; set; }
         public int ListingId { get; set; }
         [Required]
+
+        [DataType(DataType.MultilineText)]
         public string Text { get; set; }
         [Required]
         public DateTime Date { get; set; }

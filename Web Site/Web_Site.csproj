@@ -408,6 +408,7 @@
     <Content Include="Views\Shared\_Notification.cshtml" />
     <Content Include="Views\Listings\SortingByTown.cshtml" />
     <Content Include="Views\Shared\_Notifications.cshtml" />
+    <Content Include="Views\Comments\CreateCommentToCurrentListing.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -174,3 +174,7 @@ article {
     padding: 0px 10px 0px 10px;
 }
 
+#comment_text {
+    word-wrap: break-word;
+}
+

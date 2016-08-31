@@ -1,4 +1,5 @@
-﻿@model Web_Site.Models.Listings
+﻿@using Web_Site.Classes
+@model Web_Site.Models.Listings
 
 @{
     ViewBag.Title = "Details";
@@ -154,15 +155,17 @@
                 <div class="comments-box">
                     @if (c.Author != null)
                     {
-                    <h3>@c.Author.FullName</h3>
-
+                        <h3>@c.Author.FullName</h3>
+                        <i>Commented on @c.Date</i>
                     }
                     else
                     {
-                    <h3>No Author</h3>
+                        <h3>No Author</h3>
+                        <i>Commented on @c.Date</i>
                     }
-                    <div>
-                        @c.Text
+                    
+                    <div id="comment_text">
+                        <p>@c.Text</p>
                     </div>
                 </div>
             }
