@@ -12,6 +12,7 @@
         <b>Search by: </b>@Html.RadioButton("searchBy", "Title", true) <text>Title</text>
         @Html.RadioButton("searchBy", "Author")
         <text>Author's UserName</text>
+        @Html.RadioButton("searchBy", "SelectTown", true) <text>Town</text>
         <br />
         @Html.TextBox("search") <input type="submit" value="Search" />
     }

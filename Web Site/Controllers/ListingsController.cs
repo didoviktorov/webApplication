@@ -35,10 +35,19 @@ namespace Web_Site.Controllers
                         .Where(l => l.Author.UserName.ToLower().Contains(search.ToLower()) || search == null)
                         .ToList());
             }
+            else if (searchBy != null && searchBy.Equals("SelectTown"))
+            {
+                return View("Search",
+                    db.Listings.Include(p => p.Author)
+                    .Where(t => t.SelectTown.ToString().ToLower().Contains(search.ToLower()) || search == null)
+                    .ToList());
+            }
             else
             {
                 return View(db.Listings.Include(p => p.Author).ToList());
             }
+
+
         }
         public ActionResult SelectedCategorie()
         {
@@ -47,7 +56,7 @@ namespace Web_Site.Controllers
 
         public ActionResult SortingByTown()
         {
-            return View(db.Listings.Include(c => c.Author).ToList());
+            return View(db.Listings.Include(t => t.Author).ToList());
         }
 
         // GET: Listings/Details/5
@@ -81,7 +90,7 @@ namespace Web_Site.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Body,SelectCategorie,Price,ContactNumber")] Listings listings, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Create([Bind(Include = "Id,Title,Body,SelectCategorie,Price,ContactNumber,SelectTown")] Listings listings, IEnumerable<HttpPostedFileBase> files)
         {
             if (ModelState.IsValid)
             {
@@ -161,7 +170,7 @@ namespace Web_Site.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Body,Date,SelectCategorie,Price,ContactNumber")] Listings listings, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Edit([Bind(Include = "Id,Title,Body,Date,SelectCategorie,Price,ContactNumber,SelectTown")] Listings listings, IEnumerable<HttpPostedFileBase> files)
         {
 
             string request = Request.Form["check"];
