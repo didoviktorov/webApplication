@@ -51,7 +51,7 @@
             @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Category)
+            @Html.DisplayFor(modelItem => item.Category.Category)
         </td>
         <td align="center">
             @{ var data = new ItemIdAuthor { ItemId = item.Id, Author = item.Author.UserName }; }

@@ -65,7 +65,7 @@ namespace Web_Site.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.SelectCategorie = new SelectList(db.Listings, "Id", "Category");
+
             return View();
         }
 
@@ -75,15 +75,14 @@ namespace Web_Site.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Body,SelectCategorie,Price,ContactNumber")] Listings listings, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Create(CreateListingViewModel listings, IEnumerable<HttpPostedFileBase> files)
         {
             if (ModelState.IsValid)
             {
                 UserManager<ApplicationUser> UserManager =
                     new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
                 ApplicationUser user = UserManager.FindById(this.User.Identity.GetUserId());
-                listings.Author = user;
-
+                var listing = new Listings { Title = listings.Title, Body = listings.Body, Author = user, Price = listings.Price, ContactNumber = listings.ContactNumber, TownId = listings.TownId, CategoryId = listings.CategoryId };
                 var allowedExtensions = new[] { ".jpg", ".png", ".gif" };
                 foreach (var file in files)
                 {
@@ -93,12 +92,12 @@ namespace Web_Site.Controllers
                         if (!allowedExtensions.Contains(extension))
                         {
                             TempData["notice"] = "Select .jpg, .png or .gif files format";
-                            return View(listings);
+                            return View(listing);
                         }
                         else if (file.ContentLength > 1024 * 1024)
                         {
                             TempData["notice"] = "Select files less than 2MB";
-                            return View(listings);
+                            return View(listing);
                         }
                     }
                     if (file != null && file.ContentLength > 0)
@@ -112,10 +111,10 @@ namespace Web_Site.Controllers
                         {
                             image.Content = reader.ReadBytes(file.ContentLength);
                         }
-                        listings.Files.Add(image);
+                        listing.Files.Add(image);
                     }
                 }
-                db.Listings.Add(listings);
+                db.Listings.Add(listing);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -155,7 +154,7 @@ namespace Web_Site.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Body,Date,SelectCategorie,Price,ContactNumber")] Listings listings, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Edit([Bind(Include = "Id,Title,Body,Date,CategoryId,TownId,Price,ContactNumber")] Listings listings, IEnumerable<HttpPostedFileBase> files)
         {
 
             string request = Request.Form["check"];
@@ -167,8 +166,9 @@ namespace Web_Site.Controllers
             listings.Body = tempListing.Body;
             listings.Date = tempListing.Date;
             listings.Comments = tempListing.Comments;
-            listings.Category = tempListing.Category;
+            listings.TownId = tempListing.TownId;
             listings.Price = tempListing.Price;
+            listings.CategoryId = tempListing.CategoryId;
             listings.ContactNumber = tempListing.ContactNumber;
 
             if (ModelState.IsValid)

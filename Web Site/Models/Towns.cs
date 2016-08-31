@@ -13,6 +13,6 @@ namespace Web_Site.Models
         [StringLength(90)]
         public string Town { get; set; }
 
-        public virtual IEnumerable<Listings> Listing { get; set; }
+        public virtual ICollection<Listings> Listing { get; set; }
     }
 }

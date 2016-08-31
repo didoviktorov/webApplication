@@ -38,11 +38,6 @@ namespace Web_Site.Models
 
         public string Author_Id { get; set; }
 
-        internal string ToString(object selectCategorie)
-        {
-            throw new NotImplementedException();
-        }
-
         [ForeignKey("Author_Id")]
         public ApplicationUser Author { get; set; }
 
@@ -50,8 +45,10 @@ namespace Web_Site.Models
 
         public virtual ICollection<File> Files { get; set; }
 
+        public int CategoryId { get; set; }
         public virtual Categories Category { get; set; }
 
+        public int TownId { get; set; }
         public virtual Towns Town { get; set; }
     }
 }

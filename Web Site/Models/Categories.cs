@@ -13,6 +13,6 @@ namespace Web_Site.Models
         [StringLength(70)]
         public string Category { get; set; }
 
-        public virtual IEnumerable<Listings> Listing { get; set; }
+        public virtual ICollection<Listings> Listing { get; set; }
     }
 }

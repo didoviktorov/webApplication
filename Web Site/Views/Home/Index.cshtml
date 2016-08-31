@@ -23,7 +23,7 @@
                     <img src="~/File?id=@imgFile" alt="@list.Title">
                     <div class="caption">
                         <h3>@list.Title</h3>
-                        <p>@Web_Site.Classes.Utils.CutText(list.Body,45)</p>
+                        <p>@Web_Site.Classes.Utils.CutText(list.Body,40)</p>
                         <p><a href="@Url.Action("Details", "Listings", new { id = list.Id})" class="btn btn-info" role="button">More info</a>
                     </div>
                 </div>

@@ -219,6 +219,7 @@
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\Listings.cs" />
+    <Compile Include="Models\ListingViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Towns.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

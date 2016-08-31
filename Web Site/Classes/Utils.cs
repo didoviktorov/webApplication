@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
+using Web_Site.Models;
 
 namespace Web_Site.Classes
 {
@@ -18,4 +21,5 @@ namespace Web_Site.Classes
             return shorttext;
         }
     }
+
 }

@@ -32,7 +32,7 @@
             </tr>
             @foreach (var item in Model)
             {
-                if (item.Category.ToString() == categoryMode)
+                if (item.Category.Category.ToString() == categoryMode)
                 { 
                 <tr>
                     <td>
@@ -42,7 +42,7 @@
                         @Utils.CutText(item.Body)
                     </td>
                     <td>
-                        @item.Category
+                        @item.Category.Category
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Date)
@@ -60,10 +60,7 @@
                     <td>
                         @if (item.Comments.Count > 0)
                         {
-                            foreach (var c in item.Comments)
-                            {
-                                @c.Text@:;<br>
-                    }
+                            @item.Comments.Count
                         }
                         else
                         {
