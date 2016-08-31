@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
+    @Scripts.Render("~/Scripts/notifications.js")
     @Scripts.Render("~/bundles/modernizr", "~/Scripts/openPhoto.js")
-
 </head>
 <body onload="startTimer()">
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -27,8 +27,10 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div id="notificationBox">
         @Html.Partial("_Notification")
+    </div>
+    <div class="container body-content">
         @RenderBody()
         <hr />
         <footer class="footers">

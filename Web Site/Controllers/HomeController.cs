@@ -20,14 +20,13 @@ namespace Web_Site.Controllers
                .Include(p => p.Files)
                .OrderByDescending(p => p.Date)
                .Take(6);
-            this.AddNotification("Welcome to our website!", NotificationType.SUCCESS);
             return View(latestPosts);
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
+            this.AddNotification("Many regards from our team!", NotificationType.SUCCESS);
             return View();
         }
 
