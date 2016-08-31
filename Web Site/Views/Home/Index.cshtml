@@ -1,4 +1,6 @@
-﻿@{
+﻿@using System.IO;
+@using System;
+@{
     ViewBag.Title = "Home Page";
 }
 @model IEnumerable<Web_Site.Models.Listings>
@@ -19,9 +21,18 @@
         {
             <article class="col-sm-6 col-md-4">
                 <div class="thumbnail">
-                    @{ var imgFile = list.Files.FirstOrDefault(l => l.FileId > 0).FileId;}
-                    <img src="~/File?id=@imgFile" alt="@list.Title">
-                    <div class="caption">
+                    @{
+                        if (list.Files.Count > 0)
+                        {
+                            var imgFile = list.Files.FirstOrDefault(l => l.FileId > 0).FileId;
+                            <img src="~/File?id=@imgFile" alt="@list.Title">
+                        }
+                        else
+                        {
+                            <img src="../../Content/Images/no-image.png"/>
+                        }
+                    }
+                         <div class="caption">
                         <h3>@list.Title</h3>
                         <p>@Web_Site.Classes.Utils.CutText(list.Body,45)</p>
                         <p><a href="@Url.Action("Details", "Listings", new { id = list.Id})" class="btn btn-info" role="button">More info</a>
