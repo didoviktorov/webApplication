@@ -1,0 +1,87 @@
+﻿@using Web_Site.Classes
+@using Web_Site.Models
+@model IEnumerable<Web_Site.Models.Listings>
+@{
+    ViewBag.Title = "SortingByTown";
+}
+<h2>Listings</h2>
+<table class="table">
+    @{string categoryPath = HttpContext.Current.Request.Url.AbsoluteUri; }
+    @{ string indexOf = "SortingByTown/";}
+    @{ int indexOfSelectedCategory = categoryPath.IndexOf(indexOf);}
+    @{string town = categoryPath.Substring(indexOfSelectedCategory + indexOf.Length, categoryPath.Length - indexOfSelectedCategory - indexOf.Length); }
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Body)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SelectTown)
+        </th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (item.SelectTown.ToString() == town)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Utils.CutText(item.Body)
+                </td>
+                <td>
+                    @item.Category
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @if (item.Author != null)
+                    {
+                        @item.Author.UserName
+                    }
+                    else
+                    {
+                        <i>(No Author)</i>
+                    }
+                </td>
+                <td>
+                    @if (item.Comments.Count > 0)
+                    {
+                        foreach (var c in item.Comments)
+                        {
+                            @c.Text@:;<br>
+                    }
+                    }
+                    else
+                    {
+                        <i>(No Comments)</i>
+                    }
+                </td>
+                <td>
+                    @item.SelectTown
+                </td>
+                <td align="center">
+                    @{ var data = new ItemIdAuthor { ItemId = item.Id, Author = item.Author.UserName }; }
+                    @Html.Partial("ActionMenu", data)
+                </td>
+            </tr>
+                            }
+                        }
+</table>

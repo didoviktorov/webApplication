@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Web_Site.Classes;
 using Web_Site.Models;
 
 namespace Web_Site.Controllers
@@ -25,7 +26,7 @@ namespace Web_Site.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
+            this.AddNotification("Many regards from our team!", NotificationType.SUCCESS);
             return View();
         }
 
