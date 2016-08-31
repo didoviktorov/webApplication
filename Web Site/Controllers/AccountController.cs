@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Web_Site.Models;
+using Web_Site.Classes;
 
 namespace Web_Site.Controllers
 {
@@ -76,9 +77,11 @@ namespace Web_Site.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
+            string name = model.UserName;
             switch (result)
             {
                 case SignInStatus.Success:
+                    this.AddNotification("Hello " + name + "!", NotificationType.SUCCESS);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -86,7 +89,7 @@ namespace Web_Site.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    this.AddNotification("Invalid login attempt!", NotificationType.ERROR);
                     return View(model);
             }
         }

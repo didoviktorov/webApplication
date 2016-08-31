@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Web_Site.Classes;
 using Web_Site.Models;
 
 namespace Web_Site.Controllers
@@ -19,6 +20,7 @@ namespace Web_Site.Controllers
                .Include(p => p.Files)
                .OrderByDescending(p => p.Date)
                .Take(6);
+            this.AddNotification("Welcome to our website!", NotificationType.SUCCESS);
             return View(latestPosts);
         }
 

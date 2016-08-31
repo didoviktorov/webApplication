@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Web_Site.Classes;
 using Web_Site.Models;
 
 namespace Web_Site.Controllers
@@ -20,6 +21,7 @@ namespace Web_Site.Controllers
         public ActionResult Index()
         {
             var comments = db.Comments.Include(c => c.Author);
+            this.AddNotification("New comment added!", NotificationType.SUCCESS);
             return View(comments);
         }
 
