@@ -409,10 +409,7 @@
     <Content Include="Views\Listings\SortingByTown.cshtml" />
     <Content Include="Views\Shared\_Notifications.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Comment\" />
-    <Folder Include="Views\File\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

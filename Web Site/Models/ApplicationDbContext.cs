@@ -27,5 +27,6 @@ namespace Web_Site.Models
         public DbSet<Towns> Towns { get; set; }
 
         public DbSet<Categories> Categories { get; set; }
+
     }
 }

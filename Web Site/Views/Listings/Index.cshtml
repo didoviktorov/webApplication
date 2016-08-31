@@ -12,7 +12,7 @@
         <b>Search by: </b>@Html.RadioButton("searchBy", "Title", true) <text>Title</text>
         @Html.RadioButton("searchBy", "Author")
         <text>Author's UserName</text>
-        @Html.RadioButton("searchBy", "SelectTown", true) <text>Town</text>
+        @Html.RadioButton("searchBy", "Town") <text>Town</text>
         <br />
         @Html.TextBox("search") <input type="submit" value="Search" />
     }
@@ -53,7 +53,7 @@
                 @Utils.CutText(item.Body)
             </td>
             <td>
-                <a href="/Listings/SelectedCategorie/@item.Category.Category" >@item.Category.Category</a>
+                <a href="/Listings/SelectedCategorie/@item.CategoryId" >@item.Category.Category</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
@@ -84,7 +84,7 @@
                 }
             </td>
             <td>
-                <a href="/Listings/SortingByTown/@item.Town.Town">@item.Town.Town</a>
+                <a href="/Listings/SortingByTown/@item.TownId">@item.Town.Town</a>
             </td>
             <td align="center">
                 @{ var data = new ItemIdAuthor { ItemId = item.Id, Author = item.Author.UserName }; }

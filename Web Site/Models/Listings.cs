@@ -26,6 +26,7 @@ namespace Web_Site.Models
         public string Body { get; set; }
 
         //[Required(ErrorMessage = "Your must provide a PhoneNumber")]
+        [Display(Name ="Contact Number")]
         [RegularExpression(@"^[\(|\+]?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4,6})$", ErrorMessage = "Not a valid Phone number")]
         public string ContactNumber { get; set; }
 

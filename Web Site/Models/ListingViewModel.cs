@@ -18,6 +18,7 @@ namespace Web_Site.Models
         public string Body { get; set; }
 
         //[Required(ErrorMessage = "Your must provide a PhoneNumber")]
+        [Display(Name = "Contact Number")]
         [RegularExpression(@"^[\(|\+]?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4,6})$", ErrorMessage = "Not a valid Phone number")]
         public string ContactNumber { get; set; }
 
@@ -27,37 +28,6 @@ namespace Web_Site.Models
 
         [Required]
         public DateTime Date { get; set; }
-
-        [Required]
-        public int CategoryId { get; set; }
-
-        [Required]
-        public int TownId { get; set; }
-    }
-
-    public class EditListingViewModel
-    {
-        public int Id { get; set; }
-        [Required]
-        [StringLength(200)]
-        public string Title { get; set; }
-
-        [Required]
-        [DataType(DataType.MultilineText)]
-        public string Body { get; set; }
-
-        //[Required(ErrorMessage = "Your must provide a PhoneNumber")]
-        [RegularExpression(@"^[\(|\+]?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4,6})$", ErrorMessage = "Not a valid Phone number")]
-        public string ContactNumber { get; set; }
-
-        //[Required(ErrorMessage = "Your must provide a Price")]
-        [DataType(DataType.Currency, ErrorMessage = "Not a valid Price")]
-        public Decimal Price { get; set; }
-
-        [Required]
-        public DateTime Date { get; set; }
-
-        public virtual ICollection<File> Files { get; set; }
 
         [Required]
         public int CategoryId { get; set; }

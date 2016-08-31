@@ -35,14 +35,30 @@ namespace Web_Site.Controllers
                         .Where(l => l.Author.UserName.ToLower().Contains(search.ToLower()) || search == null)
                         .ToList());
             }
+            else if (searchBy != null && searchBy.Equals("Town"))
+            {
+                return View("Search",
+                    db.Listings.Include(p => p.Author)
+                        .Where(l => l.Town.Town.ToLower().Contains(search.ToLower()) || search == null)
+                        .ToList());
+            }
             else
             {
                 return View(db.Listings.Include(p => p.Author).ToList());
             }
         }
-        public ActionResult SelectedCategorie()
+        public ActionResult SortingByTown(int? id)
         {
-            return View(db.Listings.Include(c => c.Author).ToList());
+            return View(db.Listings.Include(c => c.Author).Where(t => t.TownId == id).ToList());
+        }
+
+
+        public ActionResult SelectedCategorie(int? id)
+        {
+            var cat = db.Listings.Include(c => c.Author)
+                .Where(c => c.CategoryId == id)
+                .ToList();
+            return View(cat);
         }
 
         // GET: Listings/Details/5

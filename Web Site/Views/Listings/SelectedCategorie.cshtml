@@ -6,9 +6,6 @@
 }
 <h2>Listings</h2>
 <table class="table">
-    @{string categoryPath = HttpContext.Current.Request.Url.AbsoluteUri; }
-    @{ int indexOfSelectedCategory = categoryPath.IndexOf("SelectedCategorie");}
-    @{string categoryMode = categoryPath.Substring(indexOfSelectedCategory + 18, categoryPath.Length - indexOfSelectedCategory - 18); }
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.Title)
@@ -32,8 +29,7 @@
             </tr>
             @foreach (var item in Model)
             {
-                if (item.Category.Category.ToString() == categoryMode)
-                { 
+                
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Title)
@@ -73,5 +69,4 @@
                     </td>
                 </tr>
             }
-        }
 </table>
