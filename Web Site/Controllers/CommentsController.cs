@@ -40,6 +40,32 @@ namespace Web_Site.Controllers
             return View(comment);
         }
 
+        public ActionResult CreateCommentToCurrentListing(int id)
+        {
+            var newComment = new Comment();
+            newComment.ListingId = id;
+            newComment.Listing = db.Listings.Find(id);
+            return View(newComment);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateCommentToCurrentListing(Comment comment)
+        {
+            if (ModelState.IsValid)
+            {
+                UserManager<ApplicationUser> UserManager =
+                    new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                ApplicationUser user = UserManager.FindById(this.User.Identity.GetUserId());
+                comment.Author = user;
+
+                db.Comments.Add(comment);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(comment);
+        }
+
         // GET: Comments/Create
         public ActionResult Create()
         {

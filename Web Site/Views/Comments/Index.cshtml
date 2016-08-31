@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Web_Site.Models.Comment>
+﻿@using Web_Site.Classes
+@model IEnumerable<Web_Site.Models.Comment>
 
 @{
     ViewBag.Title = "Index";
@@ -23,23 +24,28 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Author.FullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Text)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CommentId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CommentId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CommentId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author.FullName)
+            </td>
+            <td>
+               @Utils.CutText(item.Text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {id = item.CommentId}) |
+                @Html.ActionLink("Details", "Details", new {id = item.CommentId}) |
+                @Html.ActionLink("Delete", "Delete", new {id = item.CommentId})
+            </td>
+        </tr>
+    }
 
 </table>
+
+<p>
+   @Html.ActionLink("Back to Listings", "Index", "Listings")
+</p>
