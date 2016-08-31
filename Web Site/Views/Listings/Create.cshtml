@@ -30,6 +30,8 @@
 @using (Html.BeginForm("Create", "Listings", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
 
     <div class="form-horizontal">
         <h4>Listings</h4>
