@@ -39,7 +39,7 @@
             @Html.DisplayNameFor(model => model.Comments)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SelectTown)
+            @Html.DisplayNameFor(model => model.Town)
         </th>
         <th>Actions</th>
     </tr>
@@ -84,7 +84,7 @@
                 }
             </td>
             <td>
-                <a href="/Listings/SortingByTown/@item.SelectTown">@item.SelectTown</a>
+                <a href="/Listings/SortingByTown/@item.Town.Town">@item.Town.Town</a>
             </td>
             <td align="center">
                 @{ var data = new ItemIdAuthor { ItemId = item.Id, Author = item.Author.UserName }; }
