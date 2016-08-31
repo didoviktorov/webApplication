@@ -52,6 +52,15 @@ namespace Web_Site.Models
 
         public virtual Categories Category { get; set; }
 
-        public virtual Towns Town { get; set; }
+        public enum Townies
+        {
+            Plovdiv,
+            Sofia,
+            Varna,
+            Bourgas,
+            Pleven,
+            Asenovgrad
+        }
+        public virtual Townies SelectTown { get; set; }
     }
 }

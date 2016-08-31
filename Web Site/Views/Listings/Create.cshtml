@@ -13,13 +13,13 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => Model.Category, "Choose a categorie", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EnumDropDownListFor(model => Model.Category)
                 @Html.ValidationMessageFor(model => Model.Category, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Title, htmlAttributes: new {@class = "control-label col-md-2"})
@@ -61,6 +61,13 @@
                 {
                     <div class="text-danger">@TempData["notice"]</div>
                 }
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => Model.SelectTown, "Choose a categorie", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EnumDropDownListFor(model => Model.SelectTown)
+                    @Html.ValidationMessageFor(model => Model.SelectTown, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
         <div class="form-group">

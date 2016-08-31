@@ -66,6 +66,7 @@ namespace Web_Site.Controllers
         public ActionResult Create()
         {
             ViewBag.SelectCategorie = new SelectList(db.Listings, "Id", "Category");
+            ViewBag.SelectTown = new SelectList(db.Listings, "Id", "SelectTown");
             return View();
         }
 
