@@ -45,6 +45,11 @@ namespace Web_Site.Controllers
             return View(db.Listings.Include(c => c.Author).ToList());
         }
 
+        public ActionResult SortingByTown()
+        {
+            return View(db.Listings.Include(c => c.Author).ToList());
+        }
+
         // GET: Listings/Details/5
         public ActionResult Details(int? id)
         {
@@ -65,7 +70,7 @@ namespace Web_Site.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.SelectCategorie = new SelectList(db.Listings, "Id", "Category");
+            //ViewBag.SelectCategorie = new SelectList(db.Listings, "Id", "Category");
             ViewBag.SelectTown = new SelectList(db.Listings, "Id", "SelectTown");
             return View();
         }

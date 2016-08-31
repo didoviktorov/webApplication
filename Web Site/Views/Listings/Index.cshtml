@@ -37,6 +37,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Comments)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SelectTown)
+        </th>
         <th>Actions</th>
     </tr>
     @foreach (var item in Model)
@@ -78,6 +81,9 @@
                 {
                     <i>(No Comments)</i>
                 }
+            </td>
+            <td>
+                <a href="/Listings/SortingByTown/@item.SelectTown">@item.SelectTown</a>
             </td>
             <td align="center">
                 @{ var data = new ItemIdAuthor { ItemId = item.Id, Author = item.Author.UserName }; }
