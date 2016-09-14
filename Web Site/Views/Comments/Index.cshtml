@@ -44,11 +44,21 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {id = item.CommentId}) |
-                @Html.ActionLink("Details", "Details", new {id = item.CommentId}) |
-                @Html.ActionLink("Delete", "Delete", new {id = item.CommentId})
-            </td>
+
+                @if (User.IsInRole("Admin") || User.Identity.Name == item.Author.UserName)
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new {id = item.CommentId}) |
+                        @Html.ActionLink("Details", "Details", new {id = item.CommentId}) |
+                        @Html.ActionLink("Delete", "Delete", new {id = item.CommentId})
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.CommentId })
+                    </td>
+                }
         </tr>
     }
 
