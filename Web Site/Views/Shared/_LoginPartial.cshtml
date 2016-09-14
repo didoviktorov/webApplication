@@ -1,4 +1,8 @@
-﻿@if (Request.IsAuthenticated)
+﻿@if (User.IsInRole("Admin"))
+{
+    @Html.Partial("AdminLayout")
+}
+else if (Request.IsAuthenticated)
 {
     @Html.Partial("UserLayout")
 }
